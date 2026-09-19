@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EK Portfolio.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <img src="logo.png" class="loader-logo" alt="" aria-hidden="true">
+    <div class="loading-text" id="loadingText"></div>
+    <div class="loading-bar-container">
+        <div class="loading-bar" id="loadingBar"></div>
+    </div>
+</div>
+
+<div class="page hidden">
+
+    <header>
+        <div class="banner" id="banner">
+            <div class="banner-media">
+                <video id="bannerVideo" class="banner-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+                    <source src="HillProjectVid.mp4" type="video/mp4">
+                </video>
+            </div>
+            <img src="logo.png" class="main-logo" alt="EK logo">
+        </div>
+
+        <p class="headline">Christopher Abraham</p>
+        <p class="availability">known online as Ekusers (Ee-kay-users).</p>
+        <p>-</p>
+        <p class="headline">Video Game Developer | Tech Wizard | Twitch Streamer</p>
+        <p class="availability">Video Game Development Bachelor's student</p>
+
+        <div class="cta-row">
+            <a class="btn" href="mailto:Ekusers4caba@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
+
+            <a class="social-card wip" class="btn btn-secondary" href="cv.pdf" download><i class="fas fa-download"></i> Download CV</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="box">
+                <h3>About Me</h3>
+                <p class="about-text">I build video games and I love to play them. </p>
+                <p class="about-text">Current project: Working on Project Wallace, a Dark Souls-inspired action RPG set in the Scottish Highlands around the time of the Scottish wars of independence.</p>
+                <p class="about-text">Currently a Video games development student at University of the west of Scotland, always looking for opportunities to contribute and innovative video games and expand my skills in game design and programming.</p>
+                <p class="about-text">Based in Glasgow, Scotland.</p>
+            </div>
+
+            <div class="box">
+                <h3>Skills</h3>
+                <div class="skill-group">
+                    <p class="skill-label">Coding Languages</p>
+                    <div class="tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>C++</span><span>C#</span><span>SQL</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Experience</p>
+                    <div class="tags">
+                        <span>Hardware repair</span><span>Software development</span><span>Video game development</span><span>Web development</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Game Engines</p>
+                    <div class="tags">
+                        <span>Unity</span><span>Unreal Engine</span><span>BabylonJS</span><span>Scratch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>Achievements</h3>
+                <p class="achievement-item" id="Achievements"><strong>First place award at UWS GameJam 2026</strong><br>"Project Afterlife" created by myself and Heather Brander came first place at UWS GameJam 2026 which was over a period of 48 hours and was voted first place by peers and lecturers.</p>
+                <p class="achievement-item"><strong>UWS Retro Games Room Article</strong><br>In May of 2025, I was asked to write an article about the new retro games room at UWS which was later officially published by The Scottish Games Network and the University.</p>
+            </div>
+
+            <div class="box">
+                <h3>Education</h3>
+                <p class="Education-item"><strong>HNC Computing Science</strong>City of Glasgow College (2021-2022) </p>
+                <p class="Education-item"><strong>HND Software Development</strong>New College Lanarkshire (2022-2023)</p>
+                <p class="Education-item"><strong>BSc Video Games Development</strong>University of the West of Scotland (2024-present)</p>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+
+            <div class="box">
+
+    <div class="slideshow">
+
+    <button class="slide-btn left" onclick="prevSlide()" aria-label="Previous slide">&#10094;</button>
+    <button class="slide-btn right" onclick="nextSlide()" aria-label="Next slide">&#10095;</button>
+
+    <div class="slides-wrapper">
+        <div class="slide active">
+            <a href="https://scottishgames.net/2025/06/11/uws-retro-games-room-opens/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i0.wp.com/scottishgames.net/wp-content/uploads/2025/06/Retro-Games-Room-002.jpg?ssl=1" alt="Retro games room" class="slide-image">
+            </a>
+        </div>
+
+        <div class="slide">
+            <a href="#Achievements" target="_blank" rel="noopener noreferrer">
+                <img src="GameJam2026Winner.jpg" alt="GamesJam 2026 Winner" class="slide-image">
+            </a>
+        </div>
+
+        <div class="slide">
+            <a href="#UndeadProject" target="_blank" rel="noopener noreferrer" data-project="UndeadProject">
+                <img src="Undead-SC2.png" alt="Project 3" class="slide-image">
+            </a>
+        </div>
+
+        <div class="slide">
+            <a href="#WallaceProject" target="_blank" rel="noopener noreferrer" data-project="WallaceProject">
+                <img src="Wallace-SC2.png" alt="Project 4" class="slide-image">
+            </a>
+        </div>
+    </div>
+
+</div>
+
+</div><!-- end slideshow box -->
+
+<div class="box social-section">
+    <h2>Connect</h2>
+
+    <div class="social-grid">
+
+        <a href="https://linkedin.com//in/chrisabr2003/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+        </a>
+
+        <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" class="social-card wip">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+        </a>
+
+        <a href="https://steamcommunity.com/profiles/76561199122130647/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-steam"></i>
+            <span>Steam</span>
+        </a>
+
+        <a href="https://twitch.tv/ekusers" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-twitch"></i>
+            <span>Twitch</span>
+        </a>
+
+        <a href="https://instagram.com/realchrisabraham" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </a>
+
+        <a href="https://x.com/Ekusers" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-twitter"></i>
+            <span>X</span>
+        </a>
+
+    </div>
+</div>
+
+            <!-- NEW TERMINAL SECTION -->
+            <div class="box projects-section">
+    <h2>Projects</h2>
+
+    <div class="project-item" id="WallaceProject">
+        <button class="project-toggle">Work In Progress - "Project Wallace"<span class="status fixing">In Progress</span></button>
+        <div class="project-content">
+            <p>A Dark Souls-inspired action RPG set in the Highlands of Scotland during the wars of independence.</p>
+            <p>A passion project I've been working on since the summer of 2026.</p>
+
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Lead Developer and Designer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>In development - Greybox prototype</dd>
+            </dl>
+
+            <p class="meta-label">What I've built</p>
+            <ul class="project-highlights">
+                <li>In-depth combat system with light and heavy attacks and dodge mechanics</li>
+                <li>Enemy AI movements with patrol, alert and attack states</li>
+                <li>NPC dialogue system and shop interactions</li>
+            </ul>
+
+            <div class="project-media">
+
+                <img src="Wallace-SC1.png" alt="Greybox prototype of item selection and inventory system, the player is holding a pike and wearing a helmet.">
+                <img src="Wallace-SC2.png" alt="Greybox prototype of the NPC dialogue system.">
+
+            </div>
+                        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-label="Project Wallace gameplay clip">
+                            <source src="WallaceProjectVid.mp4" type="video/mp4">
+                        </video>
+                    <p class="clip-caption">Project Wallace, in-development gameplay</p>
+
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">The Graveyard Shift - "Project Afterlife"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>The Graveyard Shift (originally Project Afterlife) is a silly, experimental physics-based game made in Unity 6 for the 48-hour UWS GameJam 2026 (with Heather Brander).</p>
+            <p>You play as the Grim Reaper's unpaid intern. In each level you take control of people who are about to die and must invent goofy, strange ways to finish them off.</p>
+            <p>Levels feature unique humorous challenges and light dark humour set in 3D environments that lean into Unity 6's physics for a deliberately zany experience.</p>
+
+           
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Developer and Programmer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectafterlife.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">The Hill Game - "Project Boulder"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>The Hill Game (also known as Project Boulder) is a university project created by Heather Brander and the author for their 2nd-year Game Engine Module. Inspired by old-school Halo custom lobbies, the goal is to climb a hill while dodging incoming boulders.</p>
+            <p>Reaching the peak awards points that are multiplied by how quickly the player gets there. Players start with three lives; each hit costs one life, and running out ends the game.</p>
+            <p>Developed over 12 weeks under time pressure, it earned a pass grade.</p>
+            <p>A few known bugs (such as floating boulders after the player is teleported back down) are intentionally left in as a reminder of how much was achieved in a short development cycle.</p>
+            
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Developer and Programmer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectboulder.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item" id="UndeadProject">
+        <button class="project-toggle">Locked Undead - "Project Warehouse"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>Locked Undead (originally Project Warehouse) is a level-design showcase created for the Level Design module of the Video Games Development course at UWS.</p>
+            <p>Made with Heather Brander and Stefan Dianocu, it served as an introduction to Unity and different approaches to level design.</p>
+            <p>The project features an aesthetic environment with light interactions (animated main menu, player movement, and a toggleable light switch) that let players explore and immerse themselves.</p>
+            <p>All assets came from the Unity Asset Store, with audio sourced from YouTube and other online sites. It was built purely as a demonstration of level-design skills rather than a fully functional game.</p>
+            
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Designer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectwarehouse.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">Work In Progress - "Project Maze"<span class="status open">Not started</span></button>
+        <div class="project-content">
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>-</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>-</span><span>-</span></dd>
+                <dt>Status</dt>
+                <dd>Work in Progress</dd>
+            </dl>
+
+            <p class="meta-label">What We've built</p>
+            <ul class="project-highlights">
+                <li>-</li>
+                <li>-</li>
+                <li>-</li>
+            </ul>
+
+            <div>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="wip"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">Work In Progress - "Project Wizard"<span class="status open">Not started</span></button>
+        <div class="project-content">
+             <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>-</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>-</span><span>-</span></dd>
+                <dt>Status</dt>
+                <dd>Work in Progress</dd>
+            </dl>
+
+            <p class="meta-label">What We've built</p>
+            <ul class="project-highlights">
+                <li>-</li>
+                <li>-</li>
+                <li>-</li>
+            </ul>
+
+            <div>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="wip"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+            <div class="box">
+                <h3>Experience</h3>
+                <p class="Experience-item"><strong>Re-Tek UK Ltd. (2023-2024)</strong>Laptop Technician and Warehouse Assistant </p>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>© Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click a project screenshot to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
