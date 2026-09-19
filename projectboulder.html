@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Project Boulder | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="One sentence about this project.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="page project-page hidden">
+
+    <!-- ============ TITLE AREA ============ -->
+    <header>
+        <img src="logo.png" class="main-logo" alt="EK logo">
+
+        <h1>The Hill Game</h1>
+        <p class="headline">Originally "Project Boulder", this project is an arcade-style game where players navigate past falling boulders on a hillside.</p>
+
+        <div class="tags project-tags">
+            <span>Casual</span>
+            <span>Arcade</span>
+            <span>Unity 6</span>
+            <span>Team of two</span>
+            <span>Completed</span>
+        </div>
+
+        <!-- BACK BUTTON: goes to the Projects section of the main page.-->
+        <div class="cta-row">
+            <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ============ SIDEBAR: quick facts, team, links ============ -->
+        <aside class="sidebar">
+
+            <div class="box" id="project-info">
+                <h3>Project info</h3>
+                <!-- EDIT ME -->
+                <dl class="project-meta">
+                    <dt>My role</dt>
+                    <dd>Programmer and Co-developer</dd>
+                    <dt>Tools</dt>
+                    <dd>Unity 6, C#, Unity Asset Store</dd>
+                    <dt>Duration</dt>
+                    <dd>12 weeks</dd>
+                    <dt>Team size</dt>
+                    <dd>2 people</dd>
+                    <dt>Status</dt>
+                    <dd>Completed</dd>
+                </dl>
+            </div>
+
+            <div class="box" id="team">
+                <h3>Team</h3>
+                <div class="info-item">
+                    <strong>Christopher Abraham</strong>
+                    <small>Lead Programmer and Co-developer</small>
+                    <p>Interactive elements and gameplay systems.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Heather Brander</strong>
+                    <small>Designer and Co-developer</small>
+                    <p>Creating engaging gameplay mechanics and immersive environments.</p>
+                </div>
+            </div>
+
+            <div class="box" id="links">
+                <h3>Links</h3>
+                <div class="link-list">
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i> Play the demo</a>
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View the source code</a>
+                </div>
+            </div>
+
+            <!-- KNOWN ISSUES -->
+            <div class="box" id="issues">
+                <h2>Known issues</h2>
+                <div class="info-item">
+                    <strong>Objects freezing <span class="status open">Known</span></strong>
+                    <p>Boulders freeze in place when the player is teleported back down.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Collision detection for boulders <span class="status open">Known</span></strong>
+                    <p>Every so often when the player is hit by a boulder, the collision is not detected properly.</p>
+                </div>
+            </div>
+
+
+        </aside>
+
+        <!-- ============ MAIN COLUMN ============ -->
+        <main class="content">
+
+            <div class="box" id="media">
+                <h2>Media</h2>
+
+                <div class="project-media">
+
+                         
+                    <div class="project-video">
+
+                        <video controls preload="metadata" poster="images/video-cover.jpg">
+                             <source src="HillProjectVid.mp4" type="video/mp4">
+                        </video>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="box" id="description">
+                <h2>About the project</h2>
+                <p>Inspired by old-school Halo fan-made custom lobbies, The hill game otherwise known as "Project Boulder" was created by Heather Brander and myself for the Game Engine Module of our 2nd year of University.</p>
+                <p>The main objective is to dodge incoming boulders as the player climbs the hill. The player is granted points for reaching the peak which is also multiplied by the time it took to get there.</p>
+                <p>At the start, players are given a total of three lives. Each boulder that hits the player results in the loss of one life. No lives results in the game ending.</p>
+                <p>This game was developed in the span of 12 weeks and was a great introduction to working with time restraints.</p>
+                <p>The hill game was given a pass grade upon submission.</p>
+                <p>Project Boulder has a few known bugs, like floating boulders when the player is teleported back down, which we plan on keeping as it is a great reminder of how far we've come and what we can achieve in such a short development cycle.</p>
+
+                <p class="meta-label">Key features</p>
+                <ul class="project-highlights">
+                    <li>Player movement and controls</li>
+                    <li>Object physics</li>
+                    <li>Game timer and scoring</li>
+                </ul>
+            </div>
+
+            <!-- LEARNING EXPERIENCES -->
+            <div class="box" id="learning">
+                <h2>What I learned</h2>
+                <!-- EDIT ME: one block per lesson. Say what you learned and how it changed the way you work. -->
+                <div class="info-item">
+                    <strong>How to pause and unpause the object physics</strong>
+                    <p>Using the Time.timeScale property in Unity to control the flow of time for physics calculations.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>How to connect scripts to game objects</strong>
+                    <p>I learnt how to code behaviors for game objects in Unity.</p>
+                </div>
+            </div>
+
+            
+        </main>
+
+    </div>
+
+    <!-- BACK BUTTON again, so nobody has to scroll up -->
+    <div class="cta-row back-row">
+        <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+    </div>
+
+    <footer>&copy; Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click a screenshot to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

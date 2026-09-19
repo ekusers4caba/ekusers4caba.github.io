@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Project Warehouse | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="One sentence about this project.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="page project-page hidden">
+
+    <!-- ============ TITLE AREA ============ -->
+    <header>
+        <img src="logo.png" class="main-logo" alt="EK logo">
+
+        <h1>Locked Undead</h1>
+        <p class="headline">A level-design showcase for the Level Design module at UWS.</p>
+
+        <div class="tags project-tags">
+            <span>Showcase</span>
+            <span>Unity 6</span>
+            <span>C#</span>
+            <span>Team of three</span>
+            <span>Completed</span>
+        </div>
+
+        <!-- BACK BUTTON: goes to the Projects section of the main page.-->
+        <div class="cta-row">
+            <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ============ SIDEBAR: quick facts, team, links ============ -->
+        <aside class="sidebar">
+
+            <div class="box" id="project-info">
+                <h3>Project info</h3>
+
+                <dl class="project-meta">
+                    <dt>My role</dt>
+                    <dd>Lead Programmer</dd>
+                    <dt>Tools</dt>
+                    <dd>Unity 6, C#, Unity asset store</dd>
+                    <dt>Duration</dt>
+                    <dd>12 weeks</dd>
+                    <dt>Team size</dt>
+                    <dd>Team of three</dd>
+                    <dt>Status</dt>
+                    <dd>Completed</dd>
+                </dl>
+            </div>
+
+            <div class="box" id="team">
+                <h3>Team</h3>
+                <div class="info-item">
+                    <strong>Christopher Abraham</strong>
+                    <small>Lead Programmer</small>
+                    <p>Menus, interactions, player movement and in-game animations</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Heather Brander</strong>
+                    <small>Design Lead</small>
+                    <p>layout, models, UI design and lighting</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Stefan Diaconu</strong>
+                    <small>Sound Designer</small>
+                    <p>Audio design, implementation, and integration</p>
+                </div>
+            </div>
+
+            <div class="box" id="links">
+                <h3>Links</h3>
+                <div class="link-list">
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i> Play the demo</a>
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View the source code</a>
+                </div>
+            </div>
+
+            <!-- KNOWN ISSUES -->
+            <div class="box" id="issues">
+                <h2>Known issues</h2>
+                <div class="info-item">
+                    <strong>Lightswitch issue <span class="status open">Open</span></strong>
+                    <p>The game buffers when the player walks into the collider box of the lightswitch.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>CPU intensive <span class="status open">Open</span></strong>
+                    <p>The game consumes a high amount of CPU resources during gameplay due to the amount of assets and lighting loaded at once.</p>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ============ MAIN COLUMN ============ -->
+        <main class="content">
+            <div class="box" id="media">
+                <h2>Media</h2>
+
+                <div class="project-media">
+                    <img src="Undead-SC1.png" alt="Image of the main menu.">
+                    <img src="Undead-SC2.png" alt="Image of the dark warehouse.">
+                    <img src="Undead-SC3.png" alt="Image of warehouse shelves which have collapsed, slight worldbuilding and storytelling.">
+                    <img src="Undead-SC4.png" alt="Warehouse with lights on.">
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="box" id="description">
+                <h2>About the project</h2>
+                <p>Locked Undead or originally named "Project Warehouse" is a showcase of our level design skills. Created for the Level Design module of the video games development course at UWS, this project was an introduction to the Unity engine and how different level designs can be implemented.</p>
+                <p>Together with Heather Brander and Stefan Dianocu we were able to showcase our creative abilities and technical skills to create an aesthetic environment.</p>
+                <p>With small interactions like a animated main menu, player movement and a toggleable lightswitch, players can explore the environment and immerse themselves in our work.</p>
+                <p>The assets within the project were all from the Unity Asset Store and audio files were sourced from Youtube and other online sources. This Project was made as a demonstration of our level design capabilities and not as a functional game.</p>
+
+                <p class="meta-label">Key features</p>
+                <ul class="project-highlights">
+                    <li>Player movement and interactible animatedmain menu</li>
+                <li>An immersive demonstration of level design</li>
+                <li>aesthetic lighting, player torch and toggleable lightswitch</li>
+                </ul>
+            </div>
+
+            <!-- LEARNING EXPERIENCES -->
+            <div class="box" id="learning">
+                <h2>What I learned</h2>
+                <div class="info-item">
+                    <strong>Animations</strong>
+                    <p>How to create and implement smooth animations in Unity, including character movement and UI interactions.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Team Collaboration</strong>
+                    <p>How to effectively communicate and coordinate with team members to achieve a common goal.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Project Management</strong>
+                    <p>How to plan, organize, and execute a project within a given timeline and scope.</p>
+                </div>
+            </div>
+
+            
+
+        </main>
+
+    </div>
+
+    <!-- BACK BUTTON again, so nobody has to scroll up -->
+    <div class="cta-row back-row">
+        <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+    </div>
+
+    <footer>&copy; Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click a screenshot to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
