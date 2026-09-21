@@ -282,7 +282,7 @@ function closeLightbox() {
     lightbox.setAttribute("aria-hidden", "true");
 }
 
-document.querySelectorAll(".project-media img").forEach(img => {
+document.querySelectorAll(".project-media img, .article-figure img").forEach(img => {
     img.tabIndex = 0;
     img.addEventListener("click", () => openLightbox(img));
     img.addEventListener("keydown", e => {
