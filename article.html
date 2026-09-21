@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Articles | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Articles on games, development and interactive web systems.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Page icon shown in the browser tab -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <img src="logo.png" class="loader-logo" alt="" aria-hidden="true">
+    <div class="loading-text" id="loadingText"></div>
+    <div class="loading-bar-container">
+        <div class="loading-bar" id="loadingBar"></div>
+    </div>
+</div>
+
+<div class="page blog-page hidden">
+
+    <!-- ============ TITLE AREA ============ -->
+    <header>
+        <img src="logo.png" class="main-logo" alt="EK logo">
+
+        <h1>Articles page</h1>
+        <p class="headline">Articles with my opinions on Game Development, Networking, and Technology.</p>
+
+        <div class="cta-row">
+            <a class="btn btn-secondary" href="index.html"><i class="fas fa-arrow-left"></i> Back to main page</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar">
+
+            <div class="box" id="about-blog">
+                <h3>About this page</h3>
+                <p class="about-text">[Two or three sentences on what you write about and who it's for.]</p>
+            </div>
+
+            <div class="box" id="article-list-box">
+                <h3>Articles</h3>
+                <!-- Filled in automatically from the articles on this page. Click one to jump to it and open it. -->
+                <ul class="article-jump" id="articleJump"></ul>
+                <br>
+            </div>
+
+        </aside>
+
+        <!-- ============ ARTICLES ============ -->
+        <main class="content">
+
+            <div class="box" id="articles">
+                <h2>Articles</h2>
+
+                <!-- ================================================================
+                     ARTICLE 1
+                     ================================================================ -->
+                <div class="project-item article-item" id="article-1">
+
+                    <button class="project-toggle article-toggle">
+                        <img class="article-thumb" src="https://ecole-intuit-lab.co.in/wp-content/uploads/fly-images/27397/portfolio-ideas-for-design-students-15-unique-creative-projects-to-truly-stand-out-1-1800x1800.png"  viewBox='0 0 320 200'%3E%3Crect width='320' height='200' fill='%23111'/%3E%3Crect x='4' y='4' width='312' height='192' alt="Building a Strong Online Presence">
+                        <span class="article-summary">
+                            <span class="article-title">Building a Strong Online Presence</span>
+                            <span class="article-meta">
+                                <span class="article-date">26/09/2023</span>
+                                <span>5 min read</span>
+                                <span class="article-topic">Networking</span>
+                            </span>
+                            <span class="article-excerpt">Creating a good online presence: what is the best approach?</span>
+                        </span>
+                        <span class="article-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <!-- THE ARTICLE -->
+                    <div class="project-content article-content">
+                        <div class="article-body">
+
+                            <div class="article-byline">
+                                <span>By Christopher Abraham</span>
+                                <span>26/09/2023</span>
+                                <span data-word-count></span>
+                            </div>
+
+                            <p class="article-lede">An online presence has become part of the modern CV.<br>A CareerBuilder survey found that 70 percent of employers use social media to screen candidates, and 54 percent found content that caused them not to hire someone. <br><br>Having no presence carries risk too, because 47 percent of employers are less likely to interview a candidate they cannot find online. Management writer Tom Peters framed the idea in 1997: "We are CEOs of our own companies: Me Inc."</p>
+                            <br><br>
+                            <p>Establishing a presence usually begins with an audit: searching one's own name, tightening privacy settings and deciding what the individual wants to be known for. <br><br>Next come consistent usernames, a professional photograph and a short biography across platforms. Consistency matters because employers often cross-check what a CV claims against what appears online, so profiles should tell the same story. <br><br>The final piece is a central hub, ideally a personal website that the individual controls.</p>
+                            <h4>Choosing a Platform</h4>
+                            <p>Platforms are best chosen by audience rather than fashion. Two or three well-maintained profiles generally outperform many neglected ones. Each platform serves a different purpose: professional networks build credibility, portfolios demonstrate skill, and social channels show personality and communication style.</p>
+                            <p><br><i class="fas fa-arrow-right"></i> LinkedIn is the default for recruiters in almost every sector.<br><br><i class="fas fa-arrow-right"></i> A personal website provides a permanent, searchable portfolio.<br><br><i class="fas fa-arrow-right"></i> Industry-specific platforms serve particular fields. GitHub suits computing, Behance and Dribbble suit design, and YouTube or Instagram suit media, photography and marketing. Academic and journalism fields often favour X or Bluesky.</p>
+
+                            <h4>Promoting Work and Getting Noticed</h4>
+                            <p>Promotion is largely consistent, generous participation. Common steps include:</p>
+                            <ul class="project-highlights">
+                                <li>Sharing projects as short stories covering the problem, the process and the result.</li>
+                                <br><li>Commenting thoughtfully on others' work and joining industry groups.</li>
+                                <br><li>Following target companies and engaging with their content before applying.</li>
+                                <br><li>Using clear keywords in headlines and biographies so recruiters can find profiles.</li>
+                                <br><li>Collecting recommendations from lecturers, placement supervisors and clients.</li>
+                                <br><li>Including portfolio links on CVs and in every application.</li>
+                            </ul>
+
+                            <!-- GRAPH -->
+                            <figure class="article-figure">
+                                <div class="gauge-chart">
+                                    <p class="gauge-title">What employers look for when researching candidates on social media (%)</p>
+                                    <div class="gauge" style="--value: 61">Supports job qualifications</div>
+                                    <div class="gauge" style="--value: 50">Professional online persona</div>
+                                    <div class="gauge" style="--value: 37">What others post about the candidate</div>
+                                    <div class="gauge" style="--value: 24">Any reason not to hire</div>
+                                </div>
+                                <figcaption>Source: <a href="https://www.careerbuilder.com/advice/blog/social-media-survey-2017" target="_blank" rel="noopener noreferrer">CareerBuilder Social Media Survey (2017)</a></figcaption>
+                            </figure>
+
+                            <h4>Standing Out From the Competition</h4>
+                            <p>Graduates in the same field often share similar grades and skills, so distinction comes from focus and evidence. Peters suggested that individuals ask what their "product" does that makes it different. <br><br>A clear one-sentence positioning statement helps, such as "a data analyst who communicates through visual storytelling." Evidence beats adjectives: a measurable result, such as improving a website's loading time or growing a society's membership, says more than describing oneself as hardworking. <br><br>Unusual combinations of strengths, self-initiated projects, volunteering and competition entries all signal initiative. A consistent voice and a defined specialism make a candidate memorable.</p>
+
+                            <figure class="article-figure">
+                                <img src="https://digileaders.com/wp-content/uploads/2018/09/arif-riyanto-974674-unsplash-e1537438944528.jpg" viewBox='0 0 800 450'%3E%3Crect width='510' height='270' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 1%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Sharing work-in-progress as well as finished pieces shows how a person thinks, which is often what employers most want to see. Employers also have particular priorities when researching candidates:</figcaption>
+                            </figure>
+
+                            <h4>What to Include and What to Exclude</h4>
+                            <p>Include:</p>
+                            <ul class="project-highlights">
+                                <li>A small selection of the best three to six pieces, chosen for quality over quantity.</li>
+                                <br><li>Case studies explaining the individual's role, tools, decisions and outcomes.</li>
+                                <br><li>Testimonials, certificates and links to live or published work.</li>
+                                <br><li>A concise, professional "About" section.</li>
+                            </ul>
+                            <br>
+                            <p>Exclude:</p>
+                            <ul class="project-highlights">
+                                <li>Weak, outdated or unfinished work.</li>
+                                <br><li>Confidential client or placement material shared without permission.</li>
+                                <br><li>Content that employers in the survey flagged, such as provocative posts, references to drink or drugs, and discriminatory comments.</li>
+                                <br><li>Complaints about lecturers, employers or colleagues.</li>
+                            </ul>
+
+                            <h4>Update Frequency and Examples of Work</h4>
+                            <p>A portfolio is typically refreshed after each significant project and reviewed every term. On the main platform, posting or engaging two or three times a week is a sustainable rhythm, since regularity matters more than volume. <br><br>Metrics such as profile views and post engagement can indicate what is working. As personal branding author Dan Schawbel puts it, "Life is one big pitch, so you'd better start practicing."</p>
+                            <br><p>Showcasing can begin early, even with limited experience. Typical examples include:</p>
+                            <ul class="project-highlights">
+                                <li>A coursework project rewritten as a case study.</li>
+                                <br><li>A GitHub repository with a clear README.</li>
+                                <br><li>A big-worded blog post analysing an industry trend.</li>
+                                <br><li>Before-and-after screenshots or a two-minute walkthrough video.</li>
+                                <br><li>A self-initiated redesign or improvement for a local business or community group.</li>
+                            </ul>
+
+                            <h4>Industry Guidance and Advice for Students</h4>
+                            <p>Across most professions, the guidance is consistent: be professional, visible and authentic. Following professional bodies and leading practitioners helps students learn the standards and vocabulary of their field. <br><br>Many industries also publish codes of conduct or social media guidelines, and following these protects both the individual and future employers. Keeping a portfolio folder up to date means evidence is ready whenever opportunities appear, and treating each assignment as a potential showcase piece builds material steadily.</p>
+                            <p>General guidelines for students include:</p>
+                            <ul class="project-highlights">
+                                <br><li>Searching one's own name regularly.</li>
+                                <br><li>Separating personal and professional accounts where possible.</li>
+                                <br><li>Building contacts among alumni and industry speakers.</li>
+                                <br><li>Seeking permission before sharing group work.</li>
+                                <br><li>Proofreading all public content.</li>
+                                <br><li>Using a professional email address and profile picture.</li>
+                                <br><li>Being honest about skills and experience.</li>
+                                <br><li>Keeping content positive and constructive.</li>
+                                <br><li>Being consistent in tone, style and posting frequency.</li>
+                                <br><li>Using analytics to learn what content resonates with the audience.</li>
+                                <br><li>Being patient: building a presence takes time, and quality matters more than quantity.</li>
+                            </ul>
+                            <p>None of these rules make a game easy. They make it honest, and honest difficulty is what keeps players coming back for one more attempt.</p>
+
+                            <div class="article-sources">
+                                <h4>Sources</h4>
+                                <ol>
+                                    <li><a href="https://www.staffingindustry.com/news/global-daily-news/survey-says-70-employers-check-job-candidates-social-media" target="_blank" rel="noopener noreferrer">[Staffing Industry Analysts. Survey says 70% of employers check job candidates on social media. 2018.]</a></li>
+                                    <li><a href="https://theproductivitypro.com/blog/tag/branding/" target="_blank" rel="noopener noreferrer">[Laura Stack. Brand You: The Basics of Personal Branding. TheProductivityPro, 2011.]</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================================================
+                     ARTICLE 2
+                     ================================================================ -->
+                <div class="project-item article-item" id="article-2">
+
+                    <button class="project-toggle article-toggle">
+                        <img class="article-thumb" src="https://pec.ac.uk/wp-content/uploads/2021/05/AdobeStock_236241367-1-930x620-1.webp" viewBox='0 0 320 200'%3E%3Crect width='320' height='200' fill='%23111'/%3E%3Crect x='4' y='4' width='312' height='192' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='160' y='106' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3ECover image%3C/text%3E%3C/svg%3E" alt="">
+                        <span class="article-summary">
+                            <span class="article-title">Professionalism in the Creative Industries</span>
+                            <span class="article-meta">
+                                <span class="article-date">04/10/2026</span>
+                                <span>5 min read</span>
+                                <span class="article-topic">Industry</span>
+                            </span>
+                            <span class="article-excerpt">Does the concept of professionalism apply to the creative industries?</span>
+                        </span>
+                        <span class="article-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <!-- THE ARTICLE-->
+                    <div class="project-content article-content">
+                        <div class="article-body">
+
+                            <div class="article-byline">
+                                <span>By Christopher Abraham</span>
+                                <span>04/10/2026</span>
+                                <span data-word-count></span>
+                            </div>
+
+                            <p class="article-lede">Opening</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <div class="chart" data-type="bar" data-unit="Sample"
+                                     data-labels="1,2,3,4,5"
+                                     data-values="3,7,12,9,16"></div>
+                                <figcaption>Graph caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <div class="article-sources">
+                                <h4>Sources</h4>
+                                <ol>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================================================
+                     ARTICLE 3 
+                     ================================================================ -->
+                <div class="project-item article-item" id="article-3">
+
+                    <button class="project-toggle article-toggle">
+                        <img class="article-thumb" src="https://whereintheworldisnina.com/wp-content/uploads/2020/04/working-online-as-a-freelancer-800x520.jpg" viewBox='0 0 320 200'%3E%3Crect width='320' height='200' fill='%23111'/%3E%3Crect x='4' y='4' width='312' height='192' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='160' y='106' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3ECover image%3C/text%3E%3C/svg%3E" alt="">
+                        <span class="article-summary">
+                            <span class="article-title">Freelancing: The Road to Success</span>
+                            <span class="article-meta">
+                                <span class="article-date">10/10/2026</span>
+                                <span>5 min read</span>
+                                <span class="article-topic">Industry</span>
+                            </span>
+                            <span class="article-excerpt">Working in the creative industries: is freelancing the road to success?</span>
+                        </span>
+                        <span class="article-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <!-- THE ARTICLE-->
+                    <div class="project-content article-content">
+                        <div class="article-body">
+
+                            <div class="article-byline">
+                                <span>By Christopher Abraham</span>
+                                <span>10/10/2026</span>
+                                <span data-word-count></span>
+                            </div>
+
+                             <p class="article-lede">Opening</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <div class="chart" data-type="bar" data-unit="Sample"
+                                     data-labels="1,2,3,4,5"
+                                     data-values="3,7,12,9,16"></div>
+                                <figcaption>Graph caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <div class="article-sources">
+                                <h4>Sources</h4>
+                                <ol>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================================================
+                     ARTICLE 4
+                     ================================================================ -->
+                <div class="project-item article-item" id="article-4">
+
+                    <button class="project-toggle article-toggle">
+                        <img class="article-thumb" src="https://knowledge.wharton.upenn.edu/wp-content/uploads/2023/11/11.22.23-marissa-king-nano-tool-networking-v2-GettyImages-1385170533.jpg" viewBox='0 0 320 200'%3E%3Crect width='320' height='200' fill='%23111'/%3E%3Crect x='4' y='4' width='312' height='192' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='160' y='106' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3ECover image%3C/text%3E%3C/svg%3E" alt="">
+                        <span class="article-summary">
+                            <span class="article-title">The Power of Networking</span>
+                            <span class="article-meta">
+                                <span class="article-date">17/10/2026</span>
+                                <span>5 min read</span>
+                                <span class="article-topic">Networking</span>
+                            </span>
+                            <span class="article-excerpt">The importance of networking within the creative industries.</span>
+                        </span>
+                        <span class="article-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <!-- THE ARTICLE-->
+                    <div class="project-content article-content">
+                        <div class="article-body">
+
+                            <div class="article-byline">
+                                <span>By Christopher Abraham</span>
+                                <span>17/10/2026</span>
+                                <span data-word-count></span>
+                            </div>
+
+                             <p class="article-lede">Opening</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <div class="chart" data-type="bar" data-unit="Sample"
+                                     data-labels="1,2,3,4,5"
+                                     data-values="3,7,12,9,16"></div>
+                                <figcaption>Graph caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <div class="article-sources">
+                                <h4>Sources</h4>
+                                <ol>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ================================================================
+                     ARTICLE 5
+                     ================================================================ -->
+                <div class="project-item article-item" id="article-5">
+
+                    <button class="project-toggle article-toggle">
+                        <img class="article-thumb" src="https://specials-images.forbesimg.com/imageserve/68221fb3a09ccc744313a422/960x0.jpg" viewBox='0 0 320 200'%3E%3Crect width='320' height='200' fill='%23111'/%3E%3Crect x='4' y='4' width='312' height='192' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='160' y='106' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3ECover image%3C/text%3E%3C/svg%3E" alt="">
+                        <span class="article-summary">
+                            <span class="article-title">IP Rights, Creativity and AI</span>
+                            <span class="article-meta">
+                                <span class="article-date">20/10/2026</span>
+                                <span>5 min read</span>
+                                <span class="article-topic">Industry</span>
+                            </span>
+                            <span class="article-excerpt">IP rights: why they matter to creative professionals and what impact might AI have on how their creative work is owned, protected and used?</span>
+                        </span>
+                        <span class="article-chevron" aria-hidden="true"><i class="fas fa-chevron-down"></i></span>
+                    </button>
+
+                    <!-- THE ARTICLE-->
+                    <div class="project-content article-content">
+                        <div class="article-body">
+
+                            <div class="article-byline">
+                                <span>By Christopher Abraham</span>
+                                <span>20/10/2026</span>
+                                <span data-word-count></span>
+                            </div>
+
+                             <p class="article-lede">Opening</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <figure class="article-figure">
+                                <div class="chart" data-type="bar" data-unit="Sample"
+                                     data-labels="1,2,3,4,5"
+                                     data-values="3,7,12,9,16"></div>
+                                <figcaption>Graph caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+
+                            <figure class="article-figure">
+                                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23111'/%3E%3Crect x='6' y='6' width='788' height='438' fill='none' stroke='%239b1c1c' stroke-width='2'/%3E%3Ctext x='400' y='235' fill='%238a857b' font-family='Courier New,monospace' font-size='30' text-anchor='middle'%3EImage 2%3C/text%3E%3C/svg%3E" alt="Describe what this image shows">
+                                <figcaption>Image caption</figcaption>
+                            </figure>
+
+                            <h4>Title</h4>
+                            <p>Paragraph</p>
+                            <p>Paragraph</p>
+
+                            <div class="article-sources">
+                                <h4>Sources</h4>
+                                <ol>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                    <li><a href="#" target="_blank" rel="noopener noreferrer">[Author. Title of the source. Publisher, year.]</a></li>
+                                </ol>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- BACK BUTTON again, so nobody has to scroll up -->
+    <div class="cta-row back-row">
+        <a class="btn btn-secondary" href="index.html"><i class="fas fa-arrow-left"></i> Back to main page</a>
+    </div>
+
+    <footer>&copy; Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click an article image to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+
+<script>
+/*CHART-FN-START*/
+function buildChartSvg(type, labels, values, unit) {
+    const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const W = 600, H = 300, left = 60, right = 580, top = 50, base = 250;
+    const n = values.length;
+    const biggest = Math.max(...values, 1);
+
+    // pick a tidy step for the grid lines (1, 2, 5 or 10 times a power of ten), four lines above zero
+    const rawStep = biggest / 4;
+    const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
+    const step = [1, 2, 5, 10].map(m => m * mag).find(s => s >= rawStep);
+    const axisMax = step * 4;
+    const yOf = v => base - (v / axisMax) * (base - top);
+    const slot = (right - left) / n;
+
+    let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">`;
+
+    for (let i = 0; i <= 4; i++) {
+        const y = yOf(step * i);
+        svg += `<line class="grid" x1="${left}" y1="${y}" x2="${right}" y2="${y}"/>`;
+        svg += `<text class="muted" x="${left - 8}" y="${y + 4}" text-anchor="end">${+(step * i).toFixed(2)}</text>`;
+    }
+    if (unit) svg += `<text class="muted" x="${left}" y="26">${esc(unit)}</text>`;
+
+    if (type === "line") {
+        const pts = values.map((v, i) => [left + slot * i + slot / 2, yOf(v)]);
+        svg += `<polyline class="line" points="${pts.map(p => p.join(",")).join(" ")}"/>`;
+        pts.forEach((p, i) => {
+            svg += `<circle class="dot" cx="${p[0]}" cy="${p[1]}" r="5"/>`;
+            svg += `<text x="${p[0]}" y="${p[1] - 12}" text-anchor="middle">${values[i]}</text>`;
+        });
+    } else {
+        const barW = Math.min(64, slot * 0.6);
+        values.forEach((v, i) => {
+            const x = left + slot * i + (slot - barW) / 2;
+            const y = yOf(v);
+            svg += `<rect class="bar" x="${x}" y="${y}" width="${barW}" height="${base - y}"/>`;
+            svg += `<text x="${x + barW / 2}" y="${y - 8}" text-anchor="middle">${v}</text>`;
+        });
+    }
+
+    labels.forEach((label, i) => {
+        svg += `<text x="${left + slot * i + slot / 2}" y="${base + 24}" text-anchor="middle">${esc(label)}</text>`;
+    });
+
+    return svg + `</svg>`;
+}
+/*CHART-FN-END*/
+
+// 1) draw every chart from its data-* attributes
+document.querySelectorAll(".chart[data-type]").forEach(el => {
+    const labels = (el.dataset.labels || "").split(",").map(s => s.trim());
+    const values = (el.dataset.values || "").split(",").map(Number).filter(v => !isNaN(v));
+    if (!values.length || labels.length !== values.length) return;   // mismatched lists: draw nothing
+
+    el.innerHTML = buildChartSvg(el.dataset.type, labels, values, el.dataset.unit);
+    el.setAttribute("role", "img");
+    el.setAttribute("aria-label",
+        (el.dataset.unit ? el.dataset.unit + ": " : "") + labels.map((l, i) => l + " " + values[i]).join(", "));
+});
+
+// 2) the sidebar list of articles (each link scrolls to its article and opens it)
+const articleJump = document.getElementById("articleJump");
+if (articleJump) {
+    document.querySelectorAll(".article-item").forEach(item => {
+        const title = item.querySelector(".article-title");
+        if (!title || !item.id) return;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#" + item.id;
+        a.dataset.project = item.id;   // script.js handles links with data-project
+        a.textContent = title.textContent;
+        li.appendChild(a);
+        articleJump.appendChild(li);
+    });
+}
+</script>
+
+</body>
+</html>
