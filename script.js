@@ -163,7 +163,9 @@ function startBinaryTransition() {
 
     // Respect users who ask for less motion, and browsers without IntersectionObserver
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduceMotion || !("IntersectionObserver" in window)) return;
+    let readableMode = false;
+    try { readableMode = localStorage.getItem("ekReadableMode") === "1"; } catch (e) {}
+    if (reduceMotion || readableMode || !("IntersectionObserver" in window)) return;
 
     // Hide the real text behind binary until the element is actually seen
     elements.forEach(element => {
@@ -501,4 +503,70 @@ function landOnHash() {
         }
         setTimeout(() => target.scrollIntoView({ block: "nearest" }), 450);
     }
+}
+
+
+/* BACK TO TOP BUTTON
+   Added to every page automatically, no HTML needed. Fixed bottom right, appears after
+   scrolling down a bit. Uses the fa-arrow-up icon already loaded via Font Awesome. */
+
+const backToTop = document.createElement("button");
+backToTop.id = "backToTop";
+backToTop.type = "button";
+backToTop.setAttribute("aria-label", "Back to top of the page");
+backToTop.innerHTML = '<i class="fas fa-arrow-up" aria-hidden="true"></i>';
+document.body.appendChild(backToTop);
+
+function updateBackToTop() {
+    if (window.scrollY > 400) backToTop.classList.add("show");
+    else backToTop.classList.remove("show");
+}
+
+window.addEventListener("scroll", updateBackToTop, { passive: true });
+updateBackToTop();
+
+backToTop.addEventListener("click", () => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+});
+
+/* READABLE MODE TOGGLE
+   Added to every page automatically, just above the <footer>. Switches to a plain sans-serif
+   font, higher-contrast colours and turns off decorative glow/blur (see the CSS for what
+   "html.accessible-mode" changes). The choice is remembered in this browser for next time. */
+
+const footerEl = document.querySelector("footer");
+
+if (footerEl) {
+    const a11yRow = document.createElement("div");
+    a11yRow.className = "a11y-row";
+
+    const a11yBtn = document.createElement("button");
+    a11yBtn.id = "accessibilityToggle";
+    a11yBtn.type = "button";
+
+    function paintA11yButton(on) {
+        a11yBtn.setAttribute("aria-pressed", String(on));
+        a11yBtn.innerHTML = on
+            ? '<i class="fas fa-eye-slash" aria-hidden="true"></i> Standard mode'
+            : '<i class="fas fa-eye" aria-hidden="true"></i> Readable mode';
+    }
+
+    function setReadableMode(on) {
+        document.documentElement.classList.toggle("accessible-mode", on);
+        paintA11yButton(on);
+    }
+
+    let savedReadableMode = false;
+    try { savedReadableMode = localStorage.getItem("ekReadableMode") === "1"; } catch (e) {}
+    setReadableMode(savedReadableMode);
+
+    a11yBtn.addEventListener("click", () => {
+        const enabled = !document.documentElement.classList.contains("accessible-mode");
+        setReadableMode(enabled);
+        try { localStorage.setItem("ekReadableMode", enabled ? "1" : "0"); } catch (e) {}
+    });
+
+    a11yRow.appendChild(a11yBtn);
+    footerEl.parentNode.insertBefore(a11yRow, footerEl);
 }
