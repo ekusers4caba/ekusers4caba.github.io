@@ -1349,3 +1349,139 @@ header h1 {
         transition: none;
     }
 }
+
+
+/* ==========================================================
+   BACK TO TOP BUTTON (added to every page by script.js)
+   ========================================================== */
+#backToTop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--red);
+    border: 1px solid var(--red);
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+    z-index: 500;
+}
+
+#backToTop.show {
+    opacity: 0.9;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+#backToTop:hover,
+#backToTop:focus-visible {
+    opacity: 1;
+    background: #b52424;
+    box-shadow: 0 0 15px rgba(155, 28, 28, 0.7);
+}
+
+@media (max-width: 600px) {
+    #backToTop {
+        right: 14px;
+        bottom: 14px;
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+    }
+}
+
+/* ==========================================================
+   READABLE MODE TOGGLE (added to every page by script.js, just above the footer)
+   ========================================================== */
+.a11y-row {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#accessibilityToggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid var(--red);
+    color: var(--red-text);
+    font-family: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#accessibilityToggle:hover,
+#accessibilityToggle[aria-pressed="true"] {
+    background: var(--red);
+    color: #fff;
+}
+
+/* ==========================================================
+   READABLE MODE ITSELF: html.accessible-mode
+   Only typography, colour and decorative effects change here — no widths, no flex/grid
+   settings, no padding or margin on layout containers — so nothing shifts position.
+   ========================================================== */
+
+html.accessible-mode {
+    /* almost everything on the site already uses these two variables for its red,
+       so brightening them here raises contrast everywhere at once */
+    --red: #ff5252;
+    --red-text: #ff8a80;
+}
+
+html.accessible-mode body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #ffffff;
+}
+
+/* smaller supporting text: bumped up a couple of sizes, still smaller than body text */
+html.accessible-mode .headline,
+html.accessible-mode .about-text,
+html.accessible-mode .skill-label,
+html.accessible-mode .clip-caption,
+html.accessible-mode .achievement-item,
+html.accessible-mode .info-item,
+html.accessible-mode .Education-item,
+html.accessible-mode .Experience-item,
+html.accessible-mode .article-meta,
+html.accessible-mode .article-excerpt,
+html.accessible-mode .article-byline,
+html.accessible-mode .article-sources,
+html.accessible-mode footer {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* solid backgrounds instead of the blurred, semi-transparent ones: crisper edges around text */
+html.accessible-mode .box,
+html.accessible-mode .social-card,
+html.accessible-mode .project-toggle,
+html.accessible-mode #loader {
+    background: #000;
+    backdrop-filter: none;
+}
+
+/* the matrix rain becomes a faint, mostly-still backdrop instead of constant motion behind text */
+html.accessible-mode #matrix {
+    opacity: 0.05;
+}
+
+/* turn off decorative glow, blur and drop-shadow everywhere: pure visual noise for low vision,
+   and none of it affects layout, so nothing moves */
+html.accessible-mode * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+}
