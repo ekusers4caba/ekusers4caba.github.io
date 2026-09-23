@@ -274,7 +274,6 @@ footer {
 
 .project-item {
     margin-bottom: 10px;
-    color: var(--red);
 }
 
 .project-toggle {
@@ -1003,6 +1002,10 @@ header h1 {
 }
 
 .article-body p {
+    color: #e6e1d8;
+}
+
+.article-body p {
     margin: 0 0 14px;
 }
 
@@ -1455,6 +1458,23 @@ html.accessible-mode body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 18px;
     line-height: 1.7;
+    color: #ffffff;
+}
+
+/* plain paragraph text: these each have their own colour rule elsewhere (or, for
+   .article-body p, previously had a bug that made them use the red accent colour),
+   so body's white doesn't reach them on its own — set it explicitly here */
+html.accessible-mode .article-body p,
+html.accessible-mode .project-content p {
+    color: #ffffff;
+}
+
+/* same treatment for list items: the bullet lists inside articles (.project-highlights,
+   .article-sources) and inside index.html's project-content — project-meta (the Role/
+   Engine/Status key-value list) is deliberately left out, so its muted "dt" labels stay
+   as they are */
+html.accessible-mode .article-body li,
+html.accessible-mode .project-content li {
     color: #ffffff;
 }
 
