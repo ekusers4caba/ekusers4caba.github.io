@@ -897,7 +897,7 @@ header h1 {
 
 
 /* ==========================================================
-   BLOG / ARTICLES PAGE (article.html)
+   BLOG / ARTICLES PAGE (blog.html)
    ========================================================== */
 
 /* narrower sidebar than the main page, so the articles get more room */
@@ -1442,6 +1442,565 @@ header h1 {
 }
 
 /* ==========================================================
+   TIMELINE PAGE
+   The timeline IS the page: a full-viewport, edge-to-edge experience with a
+   slim masthead and one scrollable strip beneath it. The page itself never
+   scrolls vertically — only the timeline strip scrolls, and only sideways.
+   ========================================================== */
+
+/* Lock the whole document to the viewport height so nothing can scroll except
+   the horizontal strip inside .timeline-main. */
+body.timeline-body {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+}
+
+.page.timeline-page {
+    max-width: none;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* .page.timeline-page's own "display: flex" is more specific than the shared
+   .hidden{display:none} rule, so it must be restated here (higher specificity
+   still) to make sure the loader can actually hide the page while it's up. */
+.page.timeline-page.hidden {
+    display: none;
+}
+
+/* ---------- Slim masthead ---------- */
+.timeline-topbar {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 12px 24px;
+    margin: 0;
+    text-align: left;
+    border-bottom: 1px solid var(--red);
+    background:
+        linear-gradient(180deg, rgba(155, 28, 28, 0.14), rgba(0, 0, 0, 0) 100%),
+        #000;
+    position: relative;
+    z-index: 2;
+}
+
+.tt-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1 1 0;
+    min-width: 0;
+    color: #e6e1d8;
+}
+
+.tt-brand:hover { color: var(--red-text); }
+
+.tt-logo {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(227, 69, 69, 0.5));
+    flex: 0 0 auto;
+}
+
+.tt-name {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tt-title {
+    flex: 0 0 auto;
+    text-align: center;
+}
+
+.tt-title h1 {
+    margin: 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    color: #e6e1d8;
+    text-shadow: 0 0 12px rgba(227, 69, 69, 0.5);
+}
+
+.tt-sub {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: #8a857b;
+    letter-spacing: 0.3px;
+}
+
+.tt-back {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* ---------- The scrolling strip itself ---------- */
+.timeline-main {
+    flex: 1 1 auto;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background: #030202;
+}
+
+/* Nautical-chart / star-map backdrop: a faint tiled grid of contour lines and
+   plotted points, plus two slow-rotating compass rings, sitting behind the
+   timeline itself. Sits at z-index 0 so the strip's content always reads on
+   top of it. */
+.timeline-chart {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: #030202;
+    background-image:
+        radial-gradient(ellipse 75% 65% at 50% 50%, rgba(155, 28, 28, 0.14), rgba(0, 0, 0, 0) 72%),
+        repeating-linear-gradient(0deg, rgba(155, 28, 28, 0.05) 0px, rgba(155, 28, 28, 0.05) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 90px),
+        repeating-linear-gradient(90deg, rgba(155, 28, 28, 0.05) 0px, rgba(155, 28, 28, 0.05) 1px, rgba(0, 0, 0, 0) 1px, rgba(0, 0, 0, 0) 90px),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cg fill='none' stroke='rgba(155,28,28,0.32)' stroke-width='1'%3E%3Cpath d='M-20,50 Q120,10 260,50'/%3E%3Cpath d='M-20,110 Q120,150 260,110'/%3E%3Cpath d='M-20,190 Q120,150 260,190'/%3E%3C/g%3E%3Cg fill='rgba(227,69,69,0.5)'%3E%3Ccircle cx='34' cy='24' r='1.2'/%3E%3Ccircle cx='168' cy='64' r='1'/%3E%3Ccircle cx='96' cy='170' r='1.3'/%3E%3Ccircle cx='206' cy='196' r='0.9'/%3E%3Ccircle cx='14' cy='138' r='1'/%3E%3Ccircle cx='222' cy='30' r='0.8'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: no-repeat, repeat, repeat, repeat;
+    background-position: center, center, center, center;
+    background-size: cover, 90px 90px, 90px 90px, 240px 240px;
+}
+
+/* Two concentric compass rings, rotating slowly in opposite directions, plus
+   a small fixed crosshair at the centre — a nod to Destiny's director/map
+   screens without needing any real art assets. */
+.timeline-chart::before,
+.timeline-chart::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.timeline-chart::before {
+    width: min(62vh, 780px);
+    height: min(62vh, 780px);
+    border: 1px dashed rgba(155, 28, 28, 0.3);
+    animation: timelineChartSpinCW 150s linear infinite;
+}
+
+.timeline-chart::after {
+    width: min(80vh, 1000px);
+    height: min(80vh, 1000px);
+    border: 1px solid rgba(227, 69, 69, 0.14);
+    box-shadow: 0 0 0 6px rgba(155, 28, 28, 0.04) inset;
+    animation: timelineChartSpinCCW 220s linear infinite;
+}
+
+@keyframes timelineChartSpinCW {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes timelineChartSpinCCW {
+    to { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Fades at the left/right edges hint that there's more to scroll to, without
+   ever adding vertical space or a visible seam. */
+.timeline-main::before,
+.timeline-main::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.timeline-main::before {
+    left: 0;
+    background: linear-gradient(90deg, #000, rgba(0, 0, 0, 0));
+}
+
+.timeline-main::after {
+    right: 0;
+    background: linear-gradient(270deg, #000, rgba(0, 0, 0, 0));
+}
+
+.timeline-scroll {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 60px;
+    -webkit-overflow-scrolling: touch;
+    /* Tell the browser this element only pans sideways, so a touch drag is
+       handled as a horizontal scroll immediately instead of being held for a
+       moment to see if it's a vertical page scroll (there is none to give it). */
+    touch-action: pan-x;
+}
+
+.timeline-scroll::-webkit-scrollbar {
+    height: 6px;
+}
+
+.timeline-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.timeline-scroll::-webkit-scrollbar-thumb {
+    background: var(--red);
+}
+
+.timeline-track {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+    box-sizing: border-box;
+    height: 100%;
+    /* Generous top/bottom padding reserves room for a hover tooltip to open
+       fully inside the strip, so nothing is ever clipped by overflow-y:hidden
+       and nothing ever needs a vertical scrollbar. */
+    padding: clamp(100px, 22vh, 210px) 0;
+    width: max-content;
+    min-width: 100%;
+}
+
+.timeline-axis {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 2px;
+    background: var(--red);
+    box-shadow: 0 0 10px rgba(227, 69, 69, 0.6);
+    transform: translateY(-1px);
+}
+
+.timeline-item {
+    position: relative;
+    flex: 0 0 clamp(170px, 15vw, 250px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+/* End-cap artwork panels: full-height, no border, faded into the background
+   at their inner edge via a mask so they blend rather than sitting in a box. */
+.timeline-endcap {
+    position: relative;
+    flex: 0 0 clamp(160px, 18vw, 340px);
+    height: 100%;
+    overflow: hidden;
+}
+
+.timeline-endcap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    opacity: 0.7;
+}
+
+.timeline-endcap.start {
+    -webkit-mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(90deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+}
+
+.timeline-endcap.end {
+    -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+    mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Small glowing tick where each item's stem meets the axis, echoing the
+   reference banner's connector marks along its baseline. */
+.timeline-tick {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--red-text);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(227, 69, 69, 0.9);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.timeline-half {
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.timeline-item.top .timeline-half.upper {
+    justify-content: flex-start;
+}
+
+.timeline-item.bottom .timeline-half.lower {
+    justify-content: flex-end;
+}
+
+.timeline-stem {
+    width: 2px;
+    background: linear-gradient(var(--red), rgba(155, 28, 28, 0.3));
+    flex: 1 1 auto;
+}
+
+.timeline-item.bottom .timeline-stem {
+    background: linear-gradient(rgba(155, 28, 28, 0.3), var(--red));
+}
+
+.timeline-node {
+    position: relative;
+    flex: 0 0 auto;
+    cursor: pointer;
+    margin: 8px 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.timeline-node:focus {
+    outline: none;
+}
+
+.timeline-diamond {
+    width: clamp(72px, 10vh, 128px);
+    height: clamp(72px, 10vh, 128px);
+    background: #0b0b0b;
+    border: 2px solid var(--red);
+    transform: rotate(45deg);
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 0 10px rgba(155, 28, 28, 0.35);
+    transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.timeline-node:hover .timeline-diamond,
+.timeline-node:focus .timeline-diamond {
+    border-color: var(--red-text);
+    box-shadow: 0 0 22px rgba(227, 69, 69, 0.8);
+    transform: rotate(45deg) scale(1.06);
+}
+
+.timeline-diamond-face {
+    position: absolute;
+    top: -21%;
+    left: -21%;
+    width: 142%;
+    height: 142%;
+    transform: rotate(-45deg);
+}
+
+.timeline-diamond-face img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.timeline-label {
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.timeline-label .date {
+    display: block;
+    color: var(--red-text);
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.timeline-label .title {
+    display: block;
+    color: #e6e1d8;
+}
+
+.timeline-tooltip {
+    position: absolute;
+    left: 50%;
+    width: 230px;
+    transform: translateX(-50%) translateY(8px);
+    background: #0b0b0b;
+    border: 1px solid var(--red);
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.85), 0 0 14px rgba(155, 28, 28, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 5;
+}
+
+.timeline-item.top .timeline-tooltip {
+    bottom: calc(100% + 10px);
+}
+
+.timeline-item.bottom .timeline-tooltip {
+    top: calc(100% + 10px);
+}
+
+.timeline-node:hover .timeline-tooltip,
+.timeline-node:focus .timeline-tooltip,
+.timeline-node:focus-within .timeline-tooltip,
+.timeline-node.is-open .timeline-tooltip {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.timeline-tooltip .tt-date {
+    display: block;
+    color: var(--red-text);
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.timeline-tooltip p {
+    margin: 0 0 8px;
+    color: #e6e1d8;
+}
+
+.timeline-tooltip a {
+    color: var(--red-text);
+    text-decoration: none;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.timeline-tooltip a:hover {
+    text-decoration: underline;
+}
+
+/* ---------- Scroll hint ---------- */
+.timeline-hint {
+    position: absolute;
+    right: 20px;
+    bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--red-text);
+    opacity: 0.75;
+    pointer-events: none;
+    z-index: 3;
+    animation: timelineHintPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes timelineHintPulse {
+    0%, 100% { opacity: 0.35; transform: translateX(0); }
+    50% { opacity: 0.85; transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .timeline-chart::before,
+    .timeline-chart::after,
+    .timeline-hint {
+        animation: none;
+    }
+}
+
+/* Short viewports — landscape phones especially — where height is the scarce
+   resource rather than width. Shrinks everything that eats vertical space so
+   the diamonds and their tooltips always have room to fit without clipping. */
+@media (max-height: 480px) {
+    .timeline-topbar {
+        padding: 6px 14px;
+    }
+
+    .tt-title h1 {
+        font-size: 14px;
+    }
+
+    .tt-sub {
+        display: none;
+    }
+
+    .timeline-track {
+        padding: 70px 0;
+    }
+
+    .timeline-diamond {
+        width: 52px;
+        height: 52px;
+    }
+
+    .timeline-label {
+        font-size: 10px;
+    }
+
+    .timeline-tooltip {
+        width: 160px;
+        font-size: 11px;
+        padding: 8px;
+    }
+
+    .timeline-hint {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .tt-name,
+    .tt-sub,
+    .tt-back span {
+        display: none;
+    }
+
+    .tt-title h1 {
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+
+    .timeline-topbar {
+        padding: 10px 14px;
+    }
+
+    .timeline-scroll {
+        padding: 0 30px;
+    }
+
+    .timeline-main::before,
+    .timeline-main::after {
+        width: 36px;
+    }
+
+    .timeline-endcap {
+        flex-basis: 90px;
+    }
+
+    .timeline-tooltip {
+        width: 180px;
+        font-size: 12px;
+    }
+
+    .timeline-hint {
+        right: 12px;
+        bottom: 8px;
+    }
+}
+
+/* ==========================================================
    READABLE MODE ITSELF: html.accessible-mode
    Only typography, colour and decorative effects change here — no widths, no flex/grid
    settings, no padding or margin on layout containers — so nothing shifts position.
@@ -1475,6 +2034,11 @@ html.accessible-mode .project-content p {
    as they are */
 html.accessible-mode .article-body li,
 html.accessible-mode .project-content li {
+    color: #ffffff;
+}
+
+html.accessible-mode .timeline-label .title,
+html.accessible-mode .timeline-tooltip p {
     color: #ffffff;
 }
 
