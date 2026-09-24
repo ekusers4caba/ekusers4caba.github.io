@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Timeline | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A timeline of projects, milestones and releases.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Page icon shown in the browser tab -->
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body class="timeline-body">
+
+<!-- LOADING SCREEN -->
+<div id="loader">
+    <img src="logo.png" class="loader-logo" alt="" aria-hidden="true">
+    <div class="loading-text" id="loadingText"></div>
+    <div class="loading-bar-container">
+        <div class="loading-bar" id="loadingBar"></div>
+    </div>
+</div>
+
+<div class="page timeline-page hidden">
+
+    <!-- ============ SLIM MASTHEAD ============ -->
+    <header class="timeline-topbar">
+        
+            <img src="logo.png" class="tt-logo" alt="EK logo">
+            <span class="tt-name">EK Portfolio</span>
+            <h3 class="tt-brand"></h3>
+
+        <div class="tt-title">
+            <h1>Timeline</h1>
+            <p class="tt-sub">Scroll sideways &middot; hover or focus a marker for details</p>
+        </div>
+
+        <a class="btn btn-secondary tt-back" href="index.html"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
+    </header>
+
+    <!-- ============ TIMELINE (fills the rest of the viewport, horizontal scroll only) ============ -->
+    <main class="timeline-main">
+        <div class="timeline-chart" aria-hidden="true"></div>
+        <div class="timeline-scroll" id="timelineScroll">
+            <div class="timeline-track" id="timelineTrack">
+                <!-- End caps + nodes are generated below from the timelineEvents array -->
+            </div>
+        </div>
+        <div class="timeline-hint" aria-hidden="true"><i class="fas fa-arrows-left-right"></i> scroll</div>
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+
+<script>
+/* ==========================================================
+   TIMELINE DATA
+   Edit this array to add, remove or reorder events. Each entry:
+     date  - short label shown under the marker and in the tooltip
+     title - short title shown under the marker
+     blurb - one or two sentences shown in the hover/focus tooltip
+     link  - href for the "View project" link in the tooltip (optional)
+     image - picture shown inside the diamond marker (optional)
+     side  - "top" or "bottom". If left out, entries alternate automatically.
+   ========================================================== */
+const timelineEvents = [
+    {
+        date: "MAY 2025",
+        title: "Retro Games Room Feature",
+        blurb: "Wrote about UWS's new retro games room, later picked up and published by The Scottish Games Network.",
+        link: "index.html#Achievements",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "JUN 2025",
+        title: "Project Boulder",
+        blurb: "A fast, physics-heavy climbing game built with Heather Brander for the Game Engine module — dodge the boulders, reach the peak.",
+        link: "projectboulder.html",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "AUG 2025",
+        title: "Locked Undead",
+        blurb: "A level-design showcase built in Unity 6, exploring lighting, atmosphere and environment storytelling.",
+        link: "index.html#UndeadProject",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "OCT 2025",
+        title: "The Graveyard Shift",
+        blurb: "A silly, experimental physics-based game made in 48 hours — first place at UWS GameJam 2026.",
+        link: "projectafterlife.html",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "NOV 2025",
+        title: "UWS GameJam — 1st Place",
+        blurb: "Project Afterlife took first place at the 48-hour UWS GameJam, voted by peers and lecturers.",
+        link: "index.html#Achievements",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "JAN 2026",
+        title: "Project Wallace Begins",
+        blurb: "Started prototyping a Dark Souls-inspired action RPG set in the Scottish Highlands.",
+        link: "index.html#WallaceProject",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "JUN 2026",
+        title: "Combat Prototype",
+        blurb: "Greybox combat system with light and heavy attacks, dodge mechanics, and enemy AI patrol/alert states.",
+        link: "index.html#WallaceProject",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    },
+    {
+        date: "PRESENT",
+        title: "Articles & Writing",
+        blurb: "Started publishing articles on networking, professionalism and the creative industries.",
+        link: "article.html",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    }
+];
+
+/* End-cap artwork shown at the far left and right of the timeline strip, behind
+   a soft fade so there's no hard border — swap these src paths for real artwork
+   whenever you have some (key art, a character render, a banner crop, etc). */
+const timelineEndArt = {
+    start: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Ctext x='150' y='305' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E",
+    end: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g2)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Ctext x='150' y='305' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+};
+
+const track = document.getElementById("timelineTrack");
+
+function makeEndCap(side) {
+    const cap = document.createElement("div");
+    cap.className = "timeline-endcap " + side;
+    const img = document.createElement("img");
+    img.src = side === "start" ? timelineEndArt.start : timelineEndArt.end;
+    img.alt = "";
+    cap.appendChild(img);
+    return cap;
+}
+
+if (track) {
+    const axis = document.createElement("div");
+    axis.className = "timeline-axis";
+    track.appendChild(axis);
+
+    track.appendChild(makeEndCap("start"));
+
+    timelineEvents.forEach((ev, i) => {
+        const side = ev.side === "top" || ev.side === "bottom" ? ev.side : (i % 2 === 0 ? "top" : "bottom");
+
+        const item = document.createElement("div");
+        item.className = "timeline-item " + side;
+
+        const tick = document.createElement("div");
+        tick.className = "timeline-tick";
+        item.appendChild(tick);
+
+        const node = document.createElement("div");
+        node.className = "timeline-node";
+        node.tabIndex = 0;
+        node.setAttribute("role", "button");
+        node.setAttribute("aria-label", ev.title + ", " + ev.date);
+
+        const diamond = document.createElement("div");
+        diamond.className = "timeline-diamond";
+        const face = document.createElement("div");
+        face.className = "timeline-diamond-face";
+        if (ev.image) {
+            const img = document.createElement("img");
+            img.src = ev.image;
+            img.alt = ev.title;
+            face.appendChild(img);
+        }
+        diamond.appendChild(face);
+        node.appendChild(diamond);
+
+        const tooltip = document.createElement("div");
+        tooltip.className = "timeline-tooltip";
+        tooltip.innerHTML =
+            '<span class="tt-date">' + ev.date + '</span>' + 
+            "<p>" + ev.blurb + "</p>" +
+            (ev.link ? '<a href="' + ev.link + '">View project <i class="fas fa-arrow-right" aria-hidden="true"></i></a>' : "");
+        node.appendChild(tooltip);
+
+        const label = document.createElement("div");
+        label.className = "timeline-label";
+        label.innerHTML = "<br>" +'<span class="date">' + ev.date + '</span><span class="title">' + ev.title + "</span>" + "<br>";
+
+        const upper = document.createElement("div");
+        upper.className = "timeline-half upper";
+        const lower = document.createElement("div");
+        lower.className = "timeline-half lower";
+
+        if (side === "top") {
+            const stem = document.createElement("div");
+            stem.className = "timeline-stem";
+            upper.appendChild(label);
+            upper.appendChild(node);
+            upper.appendChild(stem);
+        } else {
+            const stem = document.createElement("div");
+            stem.className = "timeline-stem";
+            lower.appendChild(stem);
+            lower.appendChild(node);
+            lower.appendChild(label);
+        }
+
+        item.appendChild(upper);
+        item.appendChild(lower);
+        track.appendChild(item);
+    });
+
+    track.appendChild(makeEndCap("end"));
+}
+
+/* WHEEL SCROLL: a plain vertical mouse-wheel gesture drives the horizontal
+   scroll instead, so people don't need to hold shift or hunt for the
+   scrollbar. Horizontal trackpad swipes are left alone since deltaX already
+   dominates on those and the browser handles them natively. */
+const timelineScroll = document.getElementById("timelineScroll");
+if (timelineScroll) {
+    timelineScroll.addEventListener("wheel", (e) => {
+        if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
+        e.preventDefault();
+        timelineScroll.scrollLeft += e.deltaY;
+    }, { passive: false });
+}
+
+/* TAP-TO-OPEN TOOLTIP: CSS :hover doesn't exist on touch, and relying on a
+   plain div to pick up :focus on tap is inconsistent across mobile browsers.
+   A real click listener sidesteps both — it also fires reliably on the first
+   tap on iOS (adding a click handler is what avoids the classic "first tap
+   just hovers" ghost-click quirk). Tapping the "View project" link inside an
+   open tooltip still navigates normally; tapping anywhere else closes it. */
+if (track) {
+    track.addEventListener("click", (e) => {
+        const node = e.target.closest(".timeline-node");
+        if (!node || e.target.closest("a")) return;
+        const wasOpen = node.classList.contains("is-open");
+        track.querySelectorAll(".timeline-node.is-open").forEach(n => n.classList.remove("is-open"));
+        if (!wasOpen) node.classList.add("is-open");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".timeline-node")) {
+            track.querySelectorAll(".timeline-node.is-open").forEach(n => n.classList.remove("is-open"));
+        }
+    });
+}
+</script>
+
+</body>
+</html>
