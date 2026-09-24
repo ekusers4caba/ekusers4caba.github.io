@@ -75,21 +75,25 @@ window.addEventListener("resize", () => {
 const loadingBar = document.getElementById("loadingBar");
 const loadingText = document.getElementById("loadingText");
 
+// Terminal-style readouts rather than a punchline each time, so the loader
+// reads like the same "decoding a signal" system as the rest of the site
+// (Timeline's scan sweeps, ghost-decode date reveal, binary heading decode).
 const messages = [
-    "Calibrating vibes...",
-    "Reversing the polarity...",
-    "Downloading more RAM...",
-    "Polishing pixels...",
-    "Teaching AI manners...",
-    "Summoning dark mode...",
-    "Refactoring reality...",
-    "Installing personality...",
-    "Generating coolness...",
-    "Definitely not hacking NASA..."
+    "DECRYPTING VAULT DATA",
+    "SYNCING GHOST TELEMETRY",
+    "CALIBRATING RETICLE",
+    "ESTABLISHING UPLINK",
+    "COMPILING ARCHIVE INDEX",
+    "VERIFYING GUARDIAN ID",
+    "RENDERING TIMELINE",
+    "BOOTING VANGUARD OS",
+    "SCANNING SECTOR",
+    "AUTHENTICATING ACCESS"
 ];
 
 let progress = 0;
 let tick = 0;
+let currentLoadMessage = messages[0];
 
 function showPage() {
     const loader = document.getElementById("loader");
@@ -111,12 +115,15 @@ if (document.documentElement.classList.contains("skip-loader")) {
     // First visit: roughly 1.2s loading screen
     const loadingInterval = setInterval(() => {
         progress += 4 + Math.random() * 10;
+        const pct = Math.min(Math.round(progress), 100);
         if (loadingBar) loadingBar.style.width = Math.min(progress, 100) + "%";
 
-        // swap the message every 3rd tick so it's actually readable
-        if (loadingText && tick % 3 === 0) {
-            loadingText.innerText = messages[Math.floor(Math.random() * messages.length)];
+        // swap the message every 3rd tick so it's actually readable, but the
+        // percent readout after it still updates every tick
+        if (tick % 3 === 0) {
+            currentLoadMessage = messages[Math.floor(Math.random() * messages.length)];
         }
+        if (loadingText) loadingText.innerText = currentLoadMessage + " // " + pct + "%";
         tick++;
 
         if (progress >= 100) {
