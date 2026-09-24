@@ -36,10 +36,10 @@
 
     <!-- ============ SLIM MASTHEAD ============ -->
     <header class="timeline-topbar">
-        
+        <a class="tt-brand">
             <img src="logo.png" class="tt-logo" alt="EK logo">
             <span class="tt-name">EK Portfolio</span>
-            <h3 class="tt-brand"></h3>
+        </a>
 
         <div class="tt-title">
             <h1>Timeline</h1>
@@ -51,13 +51,30 @@
 
     <!-- ============ TIMELINE (fills the rest of the viewport, horizontal scroll only) ============ -->
     <main class="timeline-main">
-        <div class="timeline-chart" aria-hidden="true"></div>
+        <div class="timeline-chart" aria-hidden="true">
+            <div class="chart-stars"></div>
+            <div class="chart-planet-backdrop"></div>
+            <div class="chart-ticks"></div>
+            <div class="chart-orbit chart-orbit--inner">
+                <span class="chart-planet"></span>
+            </div>
+            <div class="chart-orbit chart-orbit--outer">
+                <span class="chart-planet chart-planet--outer"></span>
+            </div>
+        </div>
+        <div class="chart-frame" aria-hidden="true">
+            <span class="chart-corner tl"></span>
+            <span class="chart-corner tr"></span>
+            <span class="chart-corner bl"></span>
+            <span class="chart-corner br"></span>
+        </div>
         <div class="timeline-scroll" id="timelineScroll">
             <div class="timeline-track" id="timelineTrack">
                 <!-- End caps + nodes are generated below from the timelineEvents array -->
             </div>
         </div>
         <div class="timeline-hint" aria-hidden="true"><i class="fas fa-arrows-left-right"></i> scroll</div>
+        <div class="timeline-status" id="timelineStatus" aria-hidden="true"></div>
     </main>
 
 </div>
@@ -144,10 +161,50 @@ const timelineEndArt = {
 };
 
 const track = document.getElementById("timelineTrack");
+const timelineScroll = document.getElementById("timelineScroll");
+const timelineChart = document.querySelector(".timeline-chart");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let axisProgressEl = null;
+const dateSpansToType = [];
+
+/* Reveals a date label like a Ghost decoding a signal: characters not yet
+   locked in scramble through random glyphs each frame, and one more
+   character locks to its real value every couple of frames, left to right,
+   until the whole string has resolved. Only ever called when motion is
+   allowed — reduced-motion callers just set the full text directly instead. */
+const SCRAMBLE_CHARS = "!<>-_\\/[]{}=+*^#01";
+function typeOutDate(el, speed) {
+    const text = el.dataset.full || "";
+    el.textContent = "";
+    if (!text) return;
+    el.classList.add("is-typing");
+    const framesPerChar = 2; // how many scramble frames before each character locks in
+    let revealed = 0;
+    let frame = 0;
+    (function step() {
+        let out = text.slice(0, revealed);
+        for (let j = revealed; j < text.length; j++) {
+            out += text[j] === " " ? " " : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+        }
+        el.textContent = out;
+        frame++;
+        if (frame >= framesPerChar) {
+            frame = 0;
+            revealed++;
+        }
+        if (revealed < text.length) {
+            setTimeout(step, speed || 45);
+        } else {
+            el.textContent = text;
+            el.classList.remove("is-typing");
+        }
+    })();
+}
 
 function makeEndCap(side) {
     const cap = document.createElement("div");
     cap.className = "timeline-endcap " + side;
+    cap.style.animationDelay = side === "start" ? "0s" : (0.2 + timelineEvents.length * 0.05) + "s";
     const img = document.createElement("img");
     img.src = side === "start" ? timelineEndArt.start : timelineEndArt.end;
     img.alt = "";
@@ -160,6 +217,10 @@ if (track) {
     axis.className = "timeline-axis";
     track.appendChild(axis);
 
+    axisProgressEl = document.createElement("div");
+    axisProgressEl.className = "timeline-axis-progress";
+    track.appendChild(axisProgressEl);
+
     track.appendChild(makeEndCap("start"));
 
     timelineEvents.forEach((ev, i) => {
@@ -167,9 +228,12 @@ if (track) {
 
         const item = document.createElement("div");
         item.className = "timeline-item " + side;
+        // Stagger the entrance animation left to right as the page loads.
+        item.style.animationDelay = (0.15 + i * 0.05) + "s";
 
         const tick = document.createElement("div");
         tick.className = "timeline-tick";
+        tick.style.setProperty("--i", i);
         item.appendChild(tick);
 
         const node = document.createElement("div");
@@ -191,17 +255,44 @@ if (track) {
         diamond.appendChild(face);
         node.appendChild(diamond);
 
+        // HUD target-lock corners, purely decorative — see .node-lock-corner in style.css
+        ["tl", "tr", "bl", "br"].forEach((pos) => {
+            const corner = document.createElement("span");
+            corner.className = "node-lock-corner " + pos;
+            node.appendChild(corner);
+        });
+
         const tooltip = document.createElement("div");
         tooltip.className = "timeline-tooltip";
         tooltip.innerHTML =
-            '<span class="tt-date">' + ev.date + '</span>' + 
+            '<span class="tt-date">' + ev.date + '</span>' +
             "<p>" + ev.blurb + "</p>" +
             (ev.link ? '<a href="' + ev.link + '">View project <i class="fas fa-arrow-right" aria-hidden="true"></i></a>' : "");
         node.appendChild(tooltip);
 
         const label = document.createElement("div");
         label.className = "timeline-label";
-        label.innerHTML = "<br>" +'<span class="date">' + ev.date + '</span><span class="title">' + ev.title + "</span>" + "<br>";
+
+        const hexSpan = document.createElement("span");
+        hexSpan.className = "hex-index";
+        hexSpan.textContent = "0x" + i.toString(16).padStart(2, "0").toUpperCase();
+        label.appendChild(hexSpan);
+
+        const dateSpan = document.createElement("span");
+        dateSpan.className = "date";
+        if (prefersReducedMotion) {
+            dateSpan.textContent = ev.date;
+        } else {
+            dateSpan.dataset.full = ev.date;
+            dateSpansToType.push(dateSpan);
+        }
+
+        const titleSpan = document.createElement("span");
+        titleSpan.className = "title";
+        titleSpan.textContent = ev.title;
+
+        label.appendChild(dateSpan);
+        label.appendChild(titleSpan);
 
         const upper = document.createElement("div");
         upper.className = "timeline-half upper";
@@ -228,13 +319,201 @@ if (track) {
     });
 
     track.appendChild(makeEndCap("end"));
+
+    /* SCROLL-LINKED AXIS GLOW + DEPTH-TIERED PARALLAX + TICK COOLING: one
+       rAF-throttled handler keeps the progress fill in sync with scroll
+       position, drifts the chart backdrop and its two compass rings at three
+       distinct speeds for depth, and marks ticks the viewport's midpoint has
+       already passed so the line reads as a faint trail behind you. Parallax
+       is skipped under reduced motion; the progress fill and tick cooling
+       aren't, since both are direct readouts of scroll position rather than
+       motion running on their own.
+
+       Perf note: each tick's position along the strip is fixed once the
+       layout has settled, so it's measured once (measureTickOffsets) rather
+       than read from the DOM on every scroll event. That keeps the actual
+       scroll handler to plain arithmetic and style writes with no
+       getBoundingClientRect calls, so it never forces a synchronous layout
+       in the middle of a scroll. */
+    /* STATUS READOUT: a terminal-style line, bottom left, that swaps to a
+       new "decrypting" message each time the progress pip passes a node —
+       moved here from the loading screen so it's actually visible as you
+       browse, rather than flashing by (or not at all) during the ~1.2s
+       loader, and skipped entirely on repeat visits in the same session. */
+    const statusMessages = [
+        "DECRYPTING VAULT DATA", 
+        "SYNCING TELEMETRY",
+        "CALIBRATING RETICLE",
+        "ESTABLISHING UPLINK",
+        "COMPILING ARCHIVE INDEX",
+        "GUARDIANS MAKE THEIR OWN FATE",
+        "RENDERING TIMELINE",
+        "BOOTING VANGUARD OS",
+        "SCANNING SECTOR",
+        "AUTHENTICATING ACCESS"
+    ];
+    const timelineStatusEl = document.getElementById("timelineStatus");
+    function updateStatusReadout(progressFraction) {
+        if (!timelineStatusEl) return;
+        const msg = statusMessages[Math.floor(Math.random() * statusMessages.length)];
+        timelineStatusEl.textContent = msg + " // " + Math.round(progressFraction * 100) + "%";
+    }
+
+    const allTicks = Array.from(track.querySelectorAll(".timeline-tick"));
+    let tickOffsets = [];
+    // Whether the glowing progress-bar pip has already swept past each tick,
+    // tracked separately from .is-passed (below), since that trail-dimming
+    // effect deliberately uses a different reference point (viewport
+    // midpoint) than the pip itself (exact scroll fraction).
+    let tickSurged = [];
+    function measureTickOffsets() {
+        if (!timelineScroll || !allTicks.length) return;
+        const scrollRect = timelineScroll.getBoundingClientRect();
+        tickOffsets = allTicks.map((t) => {
+            const r = t.getBoundingClientRect();
+            return (r.left + r.width / 2) - scrollRect.left + timelineScroll.scrollLeft;
+        });
+        tickSurged = allTicks.map(() => false);
+    }
+
+    const tileParallaxFactor = 0.12;
+    const ringNearFactor = 0.22; // small ring: reads as closer, drifts faster
+    const ringFarFactor = 0.16;  // large ring: a touch slower, still ahead of the tiles
+    let scrollTicking = false;
+    function updateScrollEffects() {
+        scrollTicking = false;
+        if (!timelineScroll) return;
+
+        // Reads first, all in one go, before any style is written below —
+        // avoids the read-after-write layout thrash that interleaving them
+        // would cause.
+        const scrollLeft = timelineScroll.scrollLeft;
+        const clientWidth = timelineScroll.clientWidth;
+        const scrollWidth = timelineScroll.scrollWidth;
+        const maxScroll = scrollWidth - clientWidth;
+
+        const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollLeft / maxScroll)) : 0;
+        if (axisProgressEl) axisProgressEl.style.setProperty("--scroll-progress", progress.toFixed(4));
+
+        if (timelineChart && !prefersReducedMotion) {
+            timelineChart.style.transform = "translateX(" + (-scrollLeft * tileParallaxFactor) + "px)";
+            timelineChart.style.setProperty("--parallax-ring-near", (-scrollLeft * (ringNearFactor - tileParallaxFactor)) + "px");
+            timelineChart.style.setProperty("--parallax-ring-far", (-scrollLeft * (ringFarFactor - tileParallaxFactor)) + "px");
+        }
+
+        if (tickOffsets.length) {
+            // Trail dimming: still keyed off the viewport's midpoint, so the
+            // line reads as "already scrolled past you" — unchanged.
+            const passLine = scrollLeft + clientWidth / 2;
+            allTicks.forEach((t, i) => {
+                t.classList.toggle("is-passed", tickOffsets[i] < passLine);
+            });
+
+            // Tick surge: keyed off the same "progress" fraction that drives
+            // the glowing pip's own width/position, so the flash fires right
+            // as that pip visually reaches each tick, not before. The status
+            // readout updates on the same crossing regardless of reduced
+            // motion (it's just a text swap); only the surge animation
+            // itself is skipped there.
+            const pipX = progress * scrollWidth;
+            allTicks.forEach((t, i) => {
+                const covered = tickOffsets[i] < pipX;
+                if (covered && !tickSurged[i]) {
+                    if (!prefersReducedMotion) {
+                        t.classList.remove("is-surging");
+                        void t.offsetWidth; // restart the animation if still mid-play
+                        t.classList.add("is-surging");
+                    }
+                    updateStatusReadout(progress);
+                }
+                tickSurged[i] = covered;
+            });
+        }
+    }
+    if (timelineScroll) {
+        measureTickOffsets();
+        timelineScroll.addEventListener("scroll", () => {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            requestAnimationFrame(updateScrollEffects);
+        }, { passive: true });
+        window.addEventListener("resize", () => {
+            measureTickOffsets(); // layout may have reflowed, tick positions can shift
+            updateScrollEffects();
+        });
+        updateScrollEffects();
+    }
+
+    /* The diamond "charge up" glow no longer re-triggers on every scroll
+       into view — it's handled once, for every diamond, by the page-load
+       boot cascade further down, and never replays after that. */
+    if ("IntersectionObserver" in window) {
+        /* TYPEWRITER DATE REVEAL: types each date out once, the first time it
+           scrolls into view, then stops watching it. */
+        if (!prefersReducedMotion && dateSpansToType.length) {
+            const dateObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    typeOutDate(entry.target);
+                    obs.unobserve(entry.target);
+                });
+            }, { root: timelineScroll, threshold: 0.6 });
+            dateSpansToType.forEach((el) => dateObserver.observe(el));
+        }
+    } else if (!prefersReducedMotion) {
+        // No IntersectionObserver support: just show the dates plainly.
+        dateSpansToType.forEach((el) => { el.textContent = el.dataset.full || ""; });
+    }
+
+    /* Clears "is-surging" once its animation finishes, so the class is free
+       to be re-added (with the remove/reflow/add above) next time this same
+       tick gets crossed again. */
+    if (track && !prefersReducedMotion) {
+        track.addEventListener("animationend", (e) => {
+            if (e.animationName === "timelineTickSurge") e.target.classList.remove("is-surging");
+        });
+    }
+
+    /* BOOT-UP SCAN: once the loading screen lets the page through, every
+       diamond (not just whichever one happens to be in view) fires its scan
+       sweep once in a left-to-right cascade — a one-time "systems online"
+       beat, distinct from the per-diamond charge-up above that replays each
+       time a diamond scrolls into view. Runs once per page load, skipped
+       under reduced motion. */
+    function playBootScan() {
+        if (prefersReducedMotion) return;
+        const diamonds = Array.from(track.querySelectorAll(".timeline-diamond"));
+        diamonds.forEach((d, i) => {
+            setTimeout(() => {
+                d.classList.remove("is-charging");
+                void d.offsetWidth; // forces the animation to restart cleanly
+                d.classList.add("is-charging");
+            }, i * 90);
+        });
+    }
+
+    const pageEl = document.querySelector(".page");
+    if (pageEl) {
+        if (!pageEl.classList.contains("hidden")) {
+            playBootScan();
+        } else {
+            // Loader is still up — wait for it to remove .hidden from .page,
+            // then run the cascade exactly once.
+            const pageRevealObserver = new MutationObserver(() => {
+                if (!pageEl.classList.contains("hidden")) {
+                    pageRevealObserver.disconnect();
+                    playBootScan();
+                }
+            });
+            pageRevealObserver.observe(pageEl, { attributes: true, attributeFilter: ["class"] });
+        }
+    }
 }
 
 /* WHEEL SCROLL: a plain vertical mouse-wheel gesture drives the horizontal
    scroll instead, so people don't need to hold shift or hunt for the
    scrollbar. Horizontal trackpad swipes are left alone since deltaX already
    dominates on those and the browser handles them natively. */
-const timelineScroll = document.getElementById("timelineScroll");
 if (timelineScroll) {
     timelineScroll.addEventListener("wheel", (e) => {
         if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
