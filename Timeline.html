@@ -36,10 +36,10 @@
 
     <!-- ============ SLIM MASTHEAD ============ -->
     <header class="timeline-topbar">
-        <a class="tt-brand">
+        <div class="tt-brand" style="cursor: default; pointer-events: none; text-decoration: none; filter: none; transform: none; transition: none; opacity: 1;">
             <img src="logo.png" class="tt-logo" alt="EK logo">
             <span class="tt-name">EK Portfolio</span>
-        </a>
+        </div>
 
         <div class="tt-title">
             <h1>Timeline</h1>
@@ -99,56 +99,57 @@ const timelineEvents = [
         title: "Retro Games Room Feature",
         blurb: "Wrote about UWS's new retro games room, later picked up and published by The Scottish Games Network.",
         link: "index.html#Achievements",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Ccircle cx='100' cy='118' r='26' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='100' y1='118' x2='100' y2='70' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='64' r='10' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='118' r='6' fill='%23e6e1d8'/%3E%3Cline x1='79' y1='125' x2='68' y2='131' stroke='%23e6e1d8' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='121' y1='125' x2='132' y2='131' stroke='%23e6e1d8' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='68' cy='131' r='3' fill='%23e6e1d8'/%3E%3Ccircle cx='132' cy='131' r='3' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     },
     {
-        date: "JUN 2025",
-        title: "Project Boulder",
-        blurb: "A fast, physics-heavy climbing game built with Heather Brander for the Game Engine module — dodge the boulders, reach the peak.",
-        link: "projectboulder.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
-    },
-    {
-        date: "AUG 2025",
+        date: "SEP 2025",
         title: "Locked Undead",
         blurb: "A level-design showcase built in Unity 6, exploring lighting, atmosphere and environment storytelling.",
         link: "index.html#UndeadProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M78,96 L78,80 Q78,58 100,58 Q122,58 122,80 L122,96' fill='none' stroke='%23e6e1d8' stroke-width='9' stroke-linecap='round'/%3E%3Crect x='72' y='96' width='56' height='40' rx='8' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='112' r='7' fill='%230b0b0b'/%3E%3Crect x='97' y='115' width='6' height='12' fill='%230b0b0b'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
+
+    },
+    {   
+        date: "FEB 2026",
+        title: "Project Boulder",
+        blurb: "A fast, physics-heavy climbing game built with Heather Brander for the Game Engine module — dodge the boulders, reach the peak.",
+        link: "projectboulder.html",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='100,64 78,140 122,140' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='48' x2='100' y2='100' stroke='%23e6e1d8' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M100,50 L122,60 L100,70 Z' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     },
     {
-        date: "OCT 2025",
+        date: "MAY 2026",
         title: "The Graveyard Shift",
         blurb: "A silly, experimental physics-based game made in 48 hours — first place at UWS GameJam 2026.",
         link: "projectafterlife.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='84,64 116,64 128,90 128,140 108,152 92,152 72,140 72,90' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='84' x2='100' y2='112' stroke='%230b0b0b' stroke-width='5'/%3E%3Cline x1='86' y1='98' x2='114' y2='98' stroke='%230b0b0b' stroke-width='5'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     },
     {
-        date: "NOV 2025",
+        date: "MAY 2026",
         title: "UWS GameJam — 1st Place",
         blurb: "Project Afterlife took first place at the 48-hour UWS GameJam, voted by peers and lecturers.",
         link: "index.html#Achievements",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
-    },
-    {
-        date: "JAN 2026",
-        title: "Project Wallace Begins",
-        blurb: "Started prototyping a Dark Souls-inspired action RPG set in the Scottish Highlands.",
-        link: "index.html#WallaceProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M76,64 L124,64 L116,92 Q100,102 84,92 Z' fill='%23e6e1d8'/%3E%3Cpath d='M76,68 Q62,68 62,80 Q62,92 76,94' fill='none' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M124,68 Q138,68 138,80 Q138,92 124,94' fill='none' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Crect x='94' y='100' width='12' height='24' fill='%23e6e1d8'/%3E%3Crect x='84' y='124' width='32' height='8' rx='2' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     },
     {
         date: "JUN 2026",
+        title: "Project Wallace Begins",
+        blurb: "Started prototyping a Dark Souls-inspired action RPG set in the Scottish Highlands.",
+        link: "index.html#WallaceProject",
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='100,38 106,114 94,114' fill='%23e6e1d8'/%3E%3Crect x='72' y='114' width='56' height='10' rx='2' fill='%23e6e1d8'/%3E%3Crect x='94' y='124' width='12' height='26' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='156' r='6' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
+    },
+    {
+        date: "JUL 2026",
         title: "Combat Prototype",
         blurb: "Greybox combat system with light and heavy attacks, dodge mechanics, and enemy AI patrol/alert states.",
         link: "index.html#WallaceProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cline x1='66' y1='134' x2='134' y2='66' stroke='%23e6e1d8' stroke-width='11' stroke-linecap='round'/%3E%3Cline x1='134' y1='134' x2='66' y2='66' stroke='%23e6e1d8' stroke-width='11' stroke-linecap='round'/%3E%3Cpolygon points='100,90 110,100 100,110 90,100' fill='%230b0b0b'/%3E%3Ccircle cx='66' cy='134' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='134' cy='134' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='66' cy='66' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='134' cy='66' r='6' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     },
     {
         date: "PRESENT",
         title: "Articles & Writing",
         blurb: "Started publishing articles on networking, professionalism and the creative industries.",
         link: "article.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23111'/%3E%3Ctext x='100' y='105' fill='%238a857b' font-family='Courier New,monospace' font-size='16' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M100,72 L100,132 Q82,122 66,128 L66,74 Q82,64 100,72 Z' fill='%23e6e1d8'/%3E%3Cpath d='M100,72 L100,132 Q118,122 134,128 L134,74 Q118,64 100,72 Z' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='74' x2='100' y2='130' stroke='%230b0b0b' stroke-width='3'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
     }
 ];
 
@@ -156,8 +157,8 @@ const timelineEvents = [
    a soft fade so there's no hard border — swap these src paths for real artwork
    whenever you have some (key art, a character render, a banner crop, etc). */
 const timelineEndArt = {
-    start: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Ctext x='150' y='305' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E",
-    end: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g2)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Ctext x='150' y='305' fill='%238a857b' font-family='Courier New,monospace' font-size='18' text-anchor='middle'%3EImage%3C/text%3E%3C/svg%3E"
+    start: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M150,230 C170,255 180,278 172,300 C192,290 198,268 186,246 C204,270 210,298 194,322 C180,344 164,358 150,372 C136,358 120,344 106,322 C90,298 96,270 114,246 C102,268 108,290 128,300 C120,278 130,255 150,230 Z' fill='%23e6e1d8'/%3E%3Cpath d='M150,268 C164,286 170,302 162,318 C158,330 154,336 150,344 C146,336 142,330 138,318 C130,302 136,286 150,268 Z' fill='%230b0b0b'/%3E%3Cpolygon points='150,214 224,257 224,343 150,386 76,343 76,257' fill='none' stroke='%23e6e1d8' stroke-width='6'/%3E%3Cline x1='76' y1='257' x2='64' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='76' y1='343' x2='64' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='257' x2='236' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='343' x2='236' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='214' x2='150' y2='202' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='386' x2='150' y2='398' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cpolygon points='150,200 161,214 150,228 139,214' fill='%23e6e1d8'/%3E%3Cpolygon points='150,372 161,386 150,400 139,386' fill='%23e6e1d8'/%3E%3C/g%3E%3C/svg%3E",
+    end: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g2)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='126' cy='300' r='34' fill='none' stroke='%23e6e1d8' stroke-width='13'/%3E%3Ccircle cx='174' cy='300' r='34' fill='none' stroke='%23e6e1d8' stroke-width='13'/%3E%3Cpolygon points='150,291 159,300 150,309 141,300' fill='%23e6e1d8'/%3E%3Cpolygon points='150,214 224,257 224,343 150,386 76,343 76,257' fill='none' stroke='%23e6e1d8' stroke-width='6'/%3E%3Cline x1='76' y1='257' x2='64' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='76' y1='343' x2='64' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='257' x2='236' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='343' x2='236' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='214' x2='150' y2='202' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='386' x2='150' y2='398' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cpolygon points='150,200 161,214 150,228 139,214' fill='%23e6e1d8'/%3E%3Cpolygon points='150,372 161,386 150,400 139,386' fill='%23e6e1d8'/%3E%3C/g%3E%3C/svg%3E"
 };
 
 const track = document.getElementById("timelineTrack");
@@ -356,7 +357,7 @@ if (track) {
     function updateStatusReadout(progressFraction) {
         if (!timelineStatusEl) return;
         const msg = statusMessages[Math.floor(Math.random() * statusMessages.length)];
-        timelineStatusEl.textContent = msg + " // " + Math.round(progressFraction * 100) + "%";
+        timelineStatusEl.textContent = msg + " //";
     }
 
     const allTicks = Array.from(track.querySelectorAll(".timeline-tick"));
