@@ -1599,16 +1599,20 @@ body.timeline-body {
    own --parallax-ring-* offset (set from script.js/Timeline.html on scroll)
    so the two rings and the tiled backdrop above drift at three distinct
    speeds instead of moving as one flat layer. */
-.timeline-chart::before,
-.timeline-chart::after {
-    content: "";
+/* The two big compass rings used to be .timeline-chart::before/::after, but a
+   pseudo-element can't be cloneNode()'d, which meant they only ever existed
+   once no matter how wide the backdrop grew. They're real elements now
+   (.chart-ring--near / .chart-ring--far) so script.js can repeat them once
+   per screen-width segment, same as every other backdrop layer. */
+.chart-ring {
     position: absolute;
     top: 50%;
     left: 50%;
     border-radius: 50%;
+    pointer-events: none;
 }
 
-.timeline-chart::before {
+.chart-ring--near {
     width: min(62vh, 780px);
     height: min(62vh, 780px);
     border: 1px dashed rgba(155, 28, 28, 0.3);
@@ -1616,7 +1620,7 @@ body.timeline-body {
     animation: timelineChartSpinCW 150s linear infinite;
 }
 
-.timeline-chart::after {
+.chart-ring--far {
     width: min(80vh, 1000px);
     height: min(80vh, 1000px);
     border: 1px solid rgba(227, 69, 69, 0.14);
@@ -1944,6 +1948,31 @@ body.timeline-body {
 .timeline-endcap.end {
     -webkit-mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
     mask-image: linear-gradient(270deg, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Closing line over the final end-cap art, echoing the HUD/terminal look
+   used elsewhere (uppercase, letter-spaced, red glow) rather than reading
+   as ordinary body copy. Sits above the image but below the corner frame. */
+.timeline-endcap-caption {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    /* The end-art SVG's icon sits centred in a 0–600 viewBox with its frame
+       bottoming out at y=400 (~67%); object-fit:cover on this narrow, tall
+       panel scales to match height without vertical cropping, so that 67%
+       maps 1:1 onto the container -- padding-top lands the caption right
+       under the icon instead of floating near the very bottom edge. */
+    padding: 70% 16px 0;
+    text-align: center;
+    font-size: clamp(11px, 1.4vw, 14px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #e6e1d8;
+    text-shadow: 0 0 10px rgba(227, 69, 69, 0.65), 0 2px 12px rgba(0, 0, 0, 0.85);
+    pointer-events: none;
 }
 
 /* Small glowing tick where each item's stem meets the axis, echoing the
@@ -2394,8 +2423,7 @@ body.timeline-body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .timeline-chart::before,
-    .timeline-chart::after,
+    .chart-ring,
     .timeline-hint,
     .timeline-chart,
     .chart-ticks,
