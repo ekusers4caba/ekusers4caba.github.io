@@ -52,6 +52,7 @@
     <!-- ============ TIMELINE (fills the rest of the viewport, horizontal scroll only) ============ -->
     <main class="timeline-main">
         <div class="timeline-chart" aria-hidden="true">
+            <div class="chart-ring chart-ring--near"></div>
             <div class="chart-stars"></div>
             <div class="chart-planet-backdrop"></div>
             <div class="chart-ticks"></div>
@@ -61,6 +62,7 @@
             <div class="chart-orbit chart-orbit--outer">
                 <span class="chart-planet chart-planet--outer"></span>
             </div>
+            <div class="chart-ring chart-ring--far"></div>
         </div>
         <div class="chart-frame" aria-hidden="true">
             <span class="chart-corner tl"></span>
@@ -210,6 +212,12 @@ function makeEndCap(side) {
     img.src = side === "start" ? timelineEndArt.start : timelineEndArt.end;
     img.alt = "";
     cap.appendChild(img);
+    if (side === "end") {
+        const caption = document.createElement("div");
+        caption.className = "timeline-endcap-caption";
+        caption.textContent = "The journey continues";
+        cap.appendChild(caption);
+    }
     return cap;
 }
 
@@ -320,6 +328,69 @@ if (track) {
     });
 
     track.appendChild(makeEndCap("end"));
+
+    /* INFINITE BACKDROP: the star field, planet backdrop and the two orbit
+       rings all live inside .timeline-chart, a single backdrop layer that
+       JS parallax-shifts as you scroll (see updateScrollEffects below).
+       Left alone that layer is only ever as wide as one viewport, so a
+       long strip with lots of icons would scroll past the edge of it and
+       into empty space. This widens .timeline-chart to comfortably cover
+       the whole scrollable track -- with some headroom so it never runs
+       dry -- and clones the star/planet/orbit pieces across as many
+       viewport-wide segments as that needs, so the backdrop scales
+       automatically with however many events are on the page. */
+    function extendBackgroundLayers() {
+        if (!timelineChart || !timelineScroll) return;
+        const viewportWidth = timelineScroll.clientWidth || window.innerWidth || 1200;
+        const totalWidth = timelineScroll.scrollWidth || viewportWidth;
+        // 40% of headroom on top of the measured track width so the parallax
+        // layers (which move slower than the real scroll) never come up short.
+        const neededWidth = Math.max(viewportWidth, totalWidth) * 1.4;
+        const segments = Math.max(1, Math.ceil(neededWidth / viewportWidth));
+
+        timelineChart.style.position = "absolute";
+        timelineChart.style.left = "0";
+        timelineChart.style.top = "0";
+        timelineChart.style.height = "100%";
+        timelineChart.style.width = (segments * viewportWidth) + "px";
+
+        // Take every original layer (both compass rings, the starfield, the
+        // corner planet, the tick ring and both orbits) as templates, then
+        // rebuild the backdrop as a row of `segments` viewport-wide wrapper
+        // divs, each holding its own full copy of every layer. Because each
+        // wrapper is exactly one screen wide and itself position:absolute
+        // (so it's a containing block of its own), every layer's original
+        // CSS -- inset:0, a bottom-right corner offset, a 50%/50% centred
+        // ring -- resolves against that one segment rather than smearing or
+        // clipping across the whole multi-screen-wide backdrop. This runs on
+        // every layer, including the first screen, so segment 0 looks
+        // identical to every segment after it.
+        const templates = Array.from(timelineChart.children);
+        templates.forEach((el) => el.remove());
+
+        for (let i = 0; i < segments; i++) {
+            const segment = document.createElement("div");
+            segment.className = "chart-segment";
+            segment.style.position = "absolute";
+            segment.style.top = "0";
+            segment.style.left = (i * viewportWidth) + "px";
+            segment.style.width = viewportWidth + "px";
+            segment.style.height = "100%";
+            segment.style.pointerEvents = "none";
+
+            templates.forEach((tpl) => {
+                // A fresh pair of orbiting planets every other segment, so
+                // they feel scattered along the strip instead of repeating
+                // in lockstep.
+                if (tpl.classList.contains("chart-orbit--inner") && i % 2 === 1) return;
+                if (tpl.classList.contains("chart-orbit--outer") && i % 2 === 0) return;
+                segment.appendChild(tpl.cloneNode(true));
+            });
+
+            timelineChart.appendChild(segment);
+        }
+    }
+    extendBackgroundLayers();
 
     /* SCROLL-LINKED AXIS GLOW + DEPTH-TIERED PARALLAX + TICK COOLING: one
        rAF-throttled handler keeps the progress fill in sync with scroll
