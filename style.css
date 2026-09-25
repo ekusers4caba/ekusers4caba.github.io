@@ -1756,6 +1756,29 @@ body.timeline-body {
     transform: rotate(-18deg) scaleY(0.26);
 }
 
+/* A second, smaller world sitting just above and slightly left of the
+   opening icon -- still in the upper part of the frame, but pulled in from
+   the very corner (rather than half-clipped off it) so it actually reads as
+   a shape. Given its own cool blue-grey palette, rather than the main
+   planet's warm red/orange, so the two don't read as the same object. */
+.chart-planet-backdrop--faint {
+    right: auto;
+    bottom: auto;
+    left: 6%;
+    top: 4%;
+    width: min(18vh, 210px);
+    height: min(18vh, 210px);
+    opacity: 0.4;
+    background:
+        radial-gradient(circle at 32% 30%, rgba(196, 214, 255, 0.28), rgba(196, 214, 255, 0) 45%),
+        radial-gradient(circle at 66% 68%, rgba(70, 95, 165, 0.45), rgba(8, 10, 22, 0.92) 70%);
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5) inset;
+}
+
+.chart-planet-backdrop--faint::after {
+    display: none;
+}
+
 /* HUD-style corner brackets framing the whole viewport, sitting outside
    .timeline-chart (so they stay put rather than drifting with the parallax)
    and above the edge fades/hint (so they read crisply as an overlay, the
