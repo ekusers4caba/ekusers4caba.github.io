@@ -2393,12 +2393,6 @@ body.timeline-body {
     z-index: 3;
 }
 
-.timeline-status::after {
-    content: "\2588";
-    margin-left: 2px;
-    animation: timelineCursorBlink 0.8s steps(1) infinite;
-}
-
 @media (prefers-reduced-motion: reduce) {
     .timeline-chart::before,
     .timeline-chart::after,
@@ -2440,10 +2434,6 @@ body.timeline-body {
     .timeline-label .date.is-typing::after {
         animation: none;
         content: none;
-    }
-
-    .timeline-status::after {
-        animation: none;
     }
 }
 
