@@ -55,6 +55,7 @@
             <div class="chart-ring chart-ring--near"></div>
             <div class="chart-stars"></div>
             <div class="chart-planet-backdrop"></div>
+            <div class="chart-planet-backdrop chart-planet-backdrop--faint"></div>
             <div class="chart-ticks"></div>
             <div class="chart-orbit chart-orbit--inner">
                 <span class="chart-planet"></span>
@@ -379,11 +380,6 @@ if (track) {
             segment.style.pointerEvents = "none";
 
             templates.forEach((tpl) => {
-                // A fresh pair of orbiting planets every other segment, so
-                // they feel scattered along the strip instead of repeating
-                // in lockstep.
-                if (tpl.classList.contains("chart-orbit--inner") && i % 2 === 1) return;
-                if (tpl.classList.contains("chart-orbit--outer") && i % 2 === 0) return;
                 segment.appendChild(tpl.cloneNode(true));
             });
 
