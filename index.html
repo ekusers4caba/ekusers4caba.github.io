@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Timeline | EK Portfolio</title>
+    <title>EK Portfolio</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A timeline of projects, milestones and releases.">
+    <meta name="description" content="EK Portfolio.">
     <meta name="theme-color" content="#000000">
 
     <!-- Page icon shown in the browser tab -->
@@ -21,7 +21,9 @@
         try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
     </script>
 </head>
-<body class="timeline-body">
+<body>
+
+<canvas id="matrix"></canvas>
 
 <!-- LOADING SCREEN -->
 <div id="loader">
@@ -32,586 +34,351 @@
     </div>
 </div>
 
-<div class="page timeline-page hidden">
+<div class="page hidden">
 
-    <!-- ============ SLIM MASTHEAD ============ -->
-    <header class="timeline-topbar">
-        <div class="tt-brand" style="cursor: default; pointer-events: none; text-decoration: none; filter: none; transform: none; transition: none; opacity: 1;">
-            <img src="logo.png" class="tt-logo" alt="EK logo">
-            <span class="tt-name">EK Portfolio</span>
+    <header>
+        <div class="banner" id="banner">
+            <div class="banner-media">
+                <video id="bannerVideo" class="banner-video" autoplay muted loop playsinline preload="auto" aria-hidden="true" tabindex="-1">
+                    <source src="HillProjectVid.mp4" type="video/mp4">
+                </video>
+            </div>
+            <img src="logo.png" class="main-logo" alt="EK logo">
         </div>
 
-        <div class="tt-title">
-            <h1>Timeline</h1>
-            <p class="tt-sub">Scroll sideways &middot; hover or focus a marker for details</p>
-        </div>
+        <p class="headline">Christopher Abraham</p>
+        <p class="availability">known online as Ekusers (Ee-kay-users).</p>
+        <a class="btn" href="Timeline.html"><i class="fas fa-route"></i> Timeline<i class="fas fa-arrow-right"></i></a>
+        <p class="headline">Video Game Developer | Tech Wizard | Twitch Streamer</p>
+        <p class="availability">Video Game Development Bachelor's student</p>
 
-        <a class="btn btn-secondary tt-back" href="index.html"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
+        <div class="cta-row">
+            <a class="btn" href="mailto:Ekusers4caba@gmail.com"><i class="fas fa-envelope"></i> Email me</a>
+
+            <a class="social-card wip" class="btn btn-secondary" href="cv.pdf" download><i class="fas fa-download"></i> Download CV</a>
+
+            <a class="btn" href="article.html"><i class="fas fa-desktop"></i>Articles<i class="fas fa-arrow-right"></i></a>
+        </div>
+        <br>
+        
+
     </header>
 
-    <!-- ============ TIMELINE (fills the rest of the viewport, horizontal scroll only) ============ -->
-    <main class="timeline-main">
-        <div class="timeline-chart" aria-hidden="true">
-            <div class="chart-ring chart-ring--near"></div>
-            <div class="chart-stars"></div>
-            <div class="chart-planet-backdrop"></div>
-            <div class="chart-planet-backdrop chart-planet-backdrop--faint"></div>
-            <div class="chart-ticks"></div>
-            <div class="chart-orbit chart-orbit--inner">
-                <span class="chart-planet"></span>
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <div class="box">
+                <h3>About Me</h3>
+                <p class="about-text">I build video games and I love to play them. </p>
+                <p class="about-text">Current project: Working on Project Wallace, a Dark Souls-inspired action RPG set in the Scottish Highlands around the time of the Scottish wars of independence.</p>
+                <p class="about-text">Currently a Video games development student at University of the west of Scotland, always looking for opportunities to contribute and innovative video games and expand my skills in game design and programming.</p>
+                <p class="about-text">Based in Glasgow, Scotland.</p>
             </div>
-            <div class="chart-orbit chart-orbit--outer">
-                <span class="chart-planet chart-planet--outer"></span>
+
+            <div class="box">
+                <h3>Skills</h3>
+                <div class="skill-group">
+                    <p class="skill-label">Coding Languages</p>
+                    <div class="tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>C++</span><span>C#</span><span>SQL</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Experience</p>
+                    <div class="tags">
+                        <span>Hardware repair</span><span>Software development</span><span>Video game development</span><span>Web development</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Game Engines</p>
+                    <div class="tags">
+                        <span>Unity</span><span>Unreal Engine</span><span>BabylonJS</span><span>Scratch</span>
+                    </div>
+                </div>
             </div>
-            <div class="chart-ring chart-ring--far"></div>
-        </div>
-        <div class="chart-frame" aria-hidden="true">
-            <span class="chart-corner tl"></span>
-            <span class="chart-corner tr"></span>
-            <span class="chart-corner bl"></span>
-            <span class="chart-corner br"></span>
-        </div>
-        <div class="timeline-scroll" id="timelineScroll">
-            <div class="timeline-track" id="timelineTrack">
-                <!-- End caps + nodes are generated below from the timelineEvents array -->
+
+            <div class="box">
+                <h3>Achievements</h3>
+                <p class="achievement-item" id="Achievements"><strong>First place award at UWS GameJam 2026</strong><br>"Project Afterlife" created by myself and Heather Brander came first place at UWS GameJam 2026 which was over a period of 48 hours and was voted first place by peers and lecturers. <br><a href="https://www.youtube.com/watch?v=nr-VaeyIPYk" target="_blank" rel="noopener noreferrer">Watch the video about the GameJam</a></p>
+                <p class="achievement-item"><strong>UWS Retro Games Room Article</strong><br>In May of 2025, I was asked to write an article about the new retro games room at UWS which was later officially published by The Scottish Games Network and the University.</p>
             </div>
+
+            <div class="box">
+                <h3>Education</h3>
+                <p class="Education-item"><strong>HNC Computing Science</strong>City of Glasgow College (2021-2022) </p>
+                <p class="Education-item"><strong>HND Software Development</strong>New College Lanarkshire (2022-2023)</p>
+                <p class="Education-item"><strong>BSc Video Games Development</strong>University of the West of Scotland (2024-present)</p>
+            </div>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="content">
+
+            <div class="box">
+
+    <div class="slideshow">
+
+    <button class="slide-btn left" onclick="prevSlide()" aria-label="Previous slide">&#10094;</button>
+    <button class="slide-btn right" onclick="nextSlide()" aria-label="Next slide">&#10095;</button>
+
+    <div class="slides-wrapper">
+        <div class="slide active">
+            <a href="https://scottishgames.net/2025/06/11/uws-retro-games-room-opens/" target="_blank" rel="noopener noreferrer">
+                <img src="https://i0.wp.com/scottishgames.net/wp-content/uploads/2025/06/Retro-Games-Room-002.jpg?ssl=1" alt="Retro games room" class="slide-image">
+            </a>
         </div>
-        <div class="timeline-hint" aria-hidden="true"><i class="fas fa-arrows-left-right"></i> scroll</div>
-        <div class="timeline-status" id="timelineStatus" aria-hidden="true"></div>
-    </main>
+
+        <div class="slide">
+            <a href="#Achievements" target="_blank" rel="noopener noreferrer">
+                <img src="GameJam2026Winner.jpg" alt="GamesJam 2026 Winner" class="slide-image">
+            </a>
+        </div>
+
+        <div class="slide">
+            <a href="#UndeadProject" target="_blank" rel="noopener noreferrer" data-project="UndeadProject">
+                <img src="Undead-SC2.png" alt="Project 3" class="slide-image">
+            </a>
+        </div>
+
+        <div class="slide">
+            <a href="#WallaceProject" target="_blank" rel="noopener noreferrer" data-project="WallaceProject">
+                <img src="Wallace-SC2.png" alt="Project 4" class="slide-image">
+            </a>
+        </div>
+    </div>
 
 </div>
 
+</div><!-- end slideshow box -->
+
+<div class="box social-section">
+    <h2>Connect</h2>
+
+    <div class="social-grid">
+
+        <a href="https://linkedin.com//in/chrisabr2003/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-linkedin"></i>
+            <span>LinkedIn</span>
+        </a>
+
+        <a href="https://github.com/YOURUSERNAME" target="_blank" rel="noopener noreferrer" class="social-card wip">
+            <i class="fab fa-github"></i>
+            <span>GitHub</span>
+        </a>
+
+        <a href="https://steamcommunity.com/profiles/76561199122130647/" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-steam"></i>
+            <span>Steam</span>
+        </a>
+
+        <a href="https://twitch.tv/ekusers" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-twitch"></i>
+            <span>Twitch</span>
+        </a>
+
+        <a href="https://instagram.com/realchrisabraham" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-instagram"></i>
+            <span>Instagram</span>
+        </a>
+
+        <a href="https://x.com/Ekusers" target="_blank" rel="noopener noreferrer" class="social-card">
+            <i class="fab fa-twitter"></i>
+            <span>X</span>
+        </a>
+
+    </div>
+</div>
+
+            <!-- NEW TERMINAL SECTION -->
+            <div class="box projects-section">
+    <h2>Projects</h2>
+
+    <div class="project-item" id="WallaceProject">
+        <button class="project-toggle">Work In Progress - "Project Wallace"<span class="status fixing">In Progress</span></button>
+        <div class="project-content">
+            <p>A Dark Souls-inspired action RPG set in the Highlands of Scotland during the wars of independence.</p>
+            <p>A passion project I've been working on since the summer of 2026.</p>
+
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Lead Developer and Designer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>In development - Greybox prototype</dd>
+            </dl>
+
+            <p class="meta-label">What I've built</p>
+            <ul class="project-highlights">
+                <li>In-depth combat system with light and heavy attacks and dodge mechanics</li>
+                <li>Enemy AI movements with patrol, alert and attack states</li>
+                <li>NPC dialogue system and shop interactions</li>
+            </ul>
+
+            <div class="project-media">
+
+                <img src="Wallace-SC1.png" alt="Greybox prototype of item selection and inventory system, the player is holding a pike and wearing a helmet.">
+                <img src="Wallace-SC2.png" alt="Greybox prototype of the NPC dialogue system.">
+
+            </div>
+                        <video id="heroVideo" autoplay muted loop playsinline preload="metadata" aria-label="Project Wallace gameplay clip">
+                            <source src="WallaceProjectVid.mp4" type="video/mp4">
+                        </video>
+                    <p class="clip-caption">Project Wallace, in-development gameplay</p>
+
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">The Graveyard Shift - "Project Afterlife"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>The Graveyard Shift (originally Project Afterlife) is a silly, experimental physics-based game made in Unity 6 for the 48-hour UWS GameJam 2026 (with Heather Brander).</p>
+            <p>You play as the Grim Reaper's unpaid intern. In each level you take control of people who are about to die and must invent goofy, strange ways to finish them off.</p>
+            <p>Levels feature unique humorous challenges and light dark humour set in 3D environments that lean into Unity 6's physics for a deliberately zany experience.</p>
+
+           
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Developer and Programmer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectafterlife.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">The Hill Game - "Project Boulder"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>The Hill Game (also known as Project Boulder) is a university project created by Heather Brander and the author for their 2nd-year Game Engine Module. Inspired by old-school Halo custom lobbies, the goal is to climb a hill while dodging incoming boulders.</p>
+            <p>Reaching the peak awards points that are multiplied by how quickly the player gets there. Players start with three lives; each hit costs one life, and running out ends the game.</p>
+            <p>Developed over 12 weeks under time pressure, it earned a pass grade.</p>
+            <p>A few known bugs (such as floating boulders after the player is teleported back down) are intentionally left in as a reminder of how much was achieved in a short development cycle.</p>
+            
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Developer and Programmer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectboulder.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item" id="UndeadProject">
+        <button class="project-toggle">Locked Undead - "Project Warehouse"<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>Locked Undead (originally Project Warehouse) is a level-design showcase created for the Level Design module of the Video Games Development course at UWS.</p>
+            <p>Made with Heather Brander and Stefan Dianocu, it served as an introduction to Unity and different approaches to level design.</p>
+            <p>The project features an aesthetic environment with light interactions (animated main menu, player movement, and a toggleable light switch) that let players explore and immerse themselves.</p>
+            <p>All assets came from the Unity Asset Store, with audio sourced from YouTube and other online sites. It was built purely as a demonstration of level-design skills rather than a fully functional game.</p>
+            
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>Co-Designer</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>Unity 6</span><span>C#</span></dd>
+                <dt>Status</dt>
+                <dd>Completed</dd>
+            </dl>
+
+            <div>
+                <a href="projectwarehouse.html" rel="noopener noreferrer"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">Work In Progress - "Project Maze"<span class="status open">Not started</span></button>
+        <div class="project-content">
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>-</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>-</span><span>-</span></dd>
+                <dt>Status</dt>
+                <dd>Work in Progress</dd>
+            </dl>
+
+            <p class="meta-label">What We've built</p>
+            <ul class="project-highlights">
+                <li>-</li>
+                <li>-</li>
+                <li>-</li>
+            </ul>
+
+            <div>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="wip"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-item">
+        <button class="project-toggle">Work In Progress - "Project Wizard"<span class="status open">Not started</span></button>
+        <div class="project-content">
+             <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <p>-</p>
+            <dl class="project-meta">
+                <dt>Role</dt>
+                <dd>-</dd>
+                <dt>Engine</dt>
+                <dd class="tags"><span>-</span><span>-</span></dd>
+                <dt>Status</dt>
+                <dd>Work in Progress</dd>
+            </dl>
+
+            <p class="meta-label">What We've built</p>
+            <ul class="project-highlights">
+                <li>-</li>
+                <li>-</li>
+                <li>-</li>
+            </ul>
+
+            <div>
+                <a href="#" target="_blank" rel="noopener noreferrer" class="wip"><p>View Project</p></a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+            <div class="box">
+                <h3>Experience</h3>
+                <p class="Experience-item"><strong>Re-Tek UK Ltd. (2023-2024)</strong>Laptop Technician and Warehouse Assistant </p>
+            </div>
+
+        </main>
+
+    </div>
+
+    <footer>© Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click a project screenshot to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
 <script src="script.js"></script>
-
-
-<script>
-/* ==========================================================
-   TIMELINE DATA
-   Edit this array to add, remove or reorder events. Each entry:
-     date  - short label shown under the marker and in the tooltip
-     title - short title shown under the marker
-     blurb - one or two sentences shown in the hover/focus tooltip
-     link  - href for the "View project" link in the tooltip (optional)
-     image - picture shown inside the diamond marker (optional)
-     side  - "top" or "bottom". If left out, entries alternate automatically.
-   ========================================================== */
-const timelineEvents = [
-    {
-        date: "MAY 2025",
-        title: "Retro Games Room Feature",
-        blurb: "Wrote about UWS's new retro games room, later picked up and published by The Scottish Games Network.",
-        link: "index.html#Achievements",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Ccircle cx='100' cy='118' r='26' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='100' y1='118' x2='100' y2='70' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='100' cy='64' r='10' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='118' r='6' fill='%23e6e1d8'/%3E%3Cline x1='79' y1='125' x2='68' y2='131' stroke='%23e6e1d8' stroke-width='3' stroke-linecap='round'/%3E%3Cline x1='121' y1='125' x2='132' y2='131' stroke='%23e6e1d8' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='68' cy='131' r='3' fill='%23e6e1d8'/%3E%3Ccircle cx='132' cy='131' r='3' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "SEP 2025",
-        title: "Locked Undead",
-        blurb: "A level-design showcase built in Unity 6, exploring lighting, atmosphere and environment storytelling.",
-        link: "index.html#UndeadProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M78,96 L78,80 Q78,58 100,58 Q122,58 122,80 L122,96' fill='none' stroke='%23e6e1d8' stroke-width='9' stroke-linecap='round'/%3E%3Crect x='72' y='96' width='56' height='40' rx='8' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='112' r='7' fill='%230b0b0b'/%3E%3Crect x='97' y='115' width='6' height='12' fill='%230b0b0b'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-
-    },
-    {   
-        date: "FEB 2026",
-        title: "Project Boulder",
-        blurb: "A fast, physics-heavy climbing game built with Heather Brander for the Game Engine module — dodge the boulders, reach the peak.",
-        link: "projectboulder.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='100,64 78,140 122,140' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='48' x2='100' y2='100' stroke='%23e6e1d8' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M100,50 L122,60 L100,70 Z' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "MAY 2026",
-        title: "The Graveyard Shift",
-        blurb: "A silly, experimental physics-based game made in 48 hours — first place at UWS GameJam 2026.",
-        link: "projectafterlife.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='84,64 116,64 128,90 128,140 108,152 92,152 72,140 72,90' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='84' x2='100' y2='112' stroke='%230b0b0b' stroke-width='5'/%3E%3Cline x1='86' y1='98' x2='114' y2='98' stroke='%230b0b0b' stroke-width='5'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "MAY 2026",
-        title: "UWS GameJam — 1st Place",
-        blurb: "Project Afterlife took first place at the 48-hour UWS GameJam, voted by peers and lecturers.",
-        link: "index.html#Achievements",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M76,64 L124,64 L116,92 Q100,102 84,92 Z' fill='%23e6e1d8'/%3E%3Cpath d='M76,68 Q62,68 62,80 Q62,92 76,94' fill='none' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Cpath d='M124,68 Q138,68 138,80 Q138,92 124,94' fill='none' stroke='%23e6e1d8' stroke-width='6' stroke-linecap='round'/%3E%3Crect x='94' y='100' width='12' height='24' fill='%23e6e1d8'/%3E%3Crect x='84' y='124' width='32' height='8' rx='2' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "JUN 2026",
-        title: "Project Wallace Begins",
-        blurb: "Started prototyping a Dark Souls-inspired action RPG set in the Scottish Highlands.",
-        link: "index.html#WallaceProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpolygon points='100,38 106,114 94,114' fill='%23e6e1d8'/%3E%3Crect x='72' y='114' width='56' height='10' rx='2' fill='%23e6e1d8'/%3E%3Crect x='94' y='124' width='12' height='26' fill='%23e6e1d8'/%3E%3Ccircle cx='100' cy='156' r='6' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "JUL 2026",
-        title: "Combat Prototype",
-        blurb: "Greybox combat system with light and heavy attacks, dodge mechanics, and enemy AI patrol/alert states.",
-        link: "index.html#WallaceProject",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cline x1='66' y1='134' x2='134' y2='66' stroke='%23e6e1d8' stroke-width='11' stroke-linecap='round'/%3E%3Cline x1='134' y1='134' x2='66' y2='66' stroke='%23e6e1d8' stroke-width='11' stroke-linecap='round'/%3E%3Cpolygon points='100,90 110,100 100,110 90,100' fill='%230b0b0b'/%3E%3Ccircle cx='66' cy='134' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='134' cy='134' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='66' cy='66' r='6' fill='%23e6e1d8'/%3E%3Ccircle cx='134' cy='66' r='6' fill='%23e6e1d8'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    },
-    {
-        date: "PRESENT",
-        title: "Articles & Writing",
-        blurb: "Started publishing articles on networking, professionalism and the creative industries.",
-        link: "article.html",
-        image: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%230b0b0b'/%3E%3Cpath d='M100,72 L100,132 Q82,122 66,128 L66,74 Q82,64 100,72 Z' fill='%23e6e1d8'/%3E%3Cpath d='M100,72 L100,132 Q118,122 134,128 L134,74 Q118,64 100,72 Z' fill='%23e6e1d8'/%3E%3Cline x1='100' y1='74' x2='100' y2='130' stroke='%230b0b0b' stroke-width='3'/%3E%3Cpolygon points='100,36 155,68 155,132 100,164 45,132 45,68' fill='none' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='45' y1='68' x2='36' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='45' y1='132' x2='36' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='68' x2='164' y2='68' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cline x1='155' y1='132' x2='164' y2='132' stroke='%23e6e1d8' stroke-width='4'/%3E%3Cpolygon points='100,26 108,36 100,46 92,36' fill='%23e6e1d8'/%3E%3Cpolygon points='100,154 108,164 100,174 92,164' fill='%23e6e1d8'/%3E%3C/svg%3E"
-    }
-];
-
-/* End-cap artwork shown at the far left and right of the timeline strip, behind
-   a soft fade so there's no hard border — swap these src paths for real artwork
-   whenever you have some (key art, a character render, a banner crop, etc). */
-const timelineEndArt = {
-    start: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Cg%3E%3Cpath d='M150,230 C170,255 180,278 172,300 C192,290 198,268 186,246 C204,270 210,298 194,322 C180,344 164,358 150,372 C136,358 120,344 106,322 C90,298 96,270 114,246 C102,268 108,290 128,300 C120,278 130,255 150,230 Z' fill='%23e6e1d8'/%3E%3Cpath d='M150,268 C164,286 170,302 162,318 C158,330 154,336 150,344 C146,336 142,330 138,318 C130,302 136,286 150,268 Z' fill='%230b0b0b'/%3E%3Cpolygon points='150,214 224,257 224,343 150,386 76,343 76,257' fill='none' stroke='%23e6e1d8' stroke-width='6'/%3E%3Cline x1='76' y1='257' x2='64' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='76' y1='343' x2='64' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='257' x2='236' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='343' x2='236' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='214' x2='150' y2='202' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='386' x2='150' y2='398' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cpolygon points='150,200 161,214 150,228 139,214' fill='%23e6e1d8'/%3E%3Cpolygon points='150,372 161,386 150,400 139,386' fill='%23e6e1d8'/%3E%3C/g%3E%3C/svg%3E",
-    end: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 600'%3E%3Cdefs%3E%3ClinearGradient id='g2' x1='1' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23130505'/%3E%3Cstop offset='1' stop-color='%23000000'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='600' fill='url(%23g2)'/%3E%3Cg fill='none' stroke='%239b1c1c' stroke-width='1.5' opacity='0.6'%3E%3Ccircle cx='150' cy='300' r='90'/%3E%3Ccircle cx='150' cy='300' r='140'/%3E%3Cpath d='M150,60 L150,540 M-40,300 L340,300' stroke-width='1'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='126' cy='300' r='34' fill='none' stroke='%23e6e1d8' stroke-width='13'/%3E%3Ccircle cx='174' cy='300' r='34' fill='none' stroke='%23e6e1d8' stroke-width='13'/%3E%3Cpolygon points='150,291 159,300 150,309 141,300' fill='%23e6e1d8'/%3E%3Cpolygon points='150,214 224,257 224,343 150,386 76,343 76,257' fill='none' stroke='%23e6e1d8' stroke-width='6'/%3E%3Cline x1='76' y1='257' x2='64' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='76' y1='343' x2='64' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='257' x2='236' y2='257' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='224' y1='343' x2='236' y2='343' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='214' x2='150' y2='202' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cline x1='150' y1='386' x2='150' y2='398' stroke='%23e6e1d8' stroke-width='5'/%3E%3Cpolygon points='150,200 161,214 150,228 139,214' fill='%23e6e1d8'/%3E%3Cpolygon points='150,372 161,386 150,400 139,386' fill='%23e6e1d8'/%3E%3C/g%3E%3C/svg%3E"
-};
-
-const track = document.getElementById("timelineTrack");
-const timelineScroll = document.getElementById("timelineScroll");
-const timelineChart = document.querySelector(".timeline-chart");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let axisProgressEl = null;
-const dateSpansToType = [];
-
-/* Reveals a date label like a Ghost decoding a signal: characters not yet
-   locked in scramble through random glyphs each frame, and one more
-   character locks to its real value every couple of frames, left to right,
-   until the whole string has resolved. Only ever called when motion is
-   allowed — reduced-motion callers just set the full text directly instead. */
-const SCRAMBLE_CHARS = "!<>-_\\/[]{}=+*^#01";
-function typeOutDate(el, speed) {
-    const text = el.dataset.full || "";
-    el.textContent = "";
-    if (!text) return;
-    el.classList.add("is-typing");
-    const framesPerChar = 2; // how many scramble frames before each character locks in
-    let revealed = 0;
-    let frame = 0;
-    (function step() {
-        let out = text.slice(0, revealed);
-        for (let j = revealed; j < text.length; j++) {
-            out += text[j] === " " ? " " : SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-        }
-        el.textContent = out;
-        frame++;
-        if (frame >= framesPerChar) {
-            frame = 0;
-            revealed++;
-        }
-        if (revealed < text.length) {
-            setTimeout(step, speed || 45);
-        } else {
-            el.textContent = text;
-            el.classList.remove("is-typing");
-        }
-    })();
-}
-
-function makeEndCap(side) {
-    const cap = document.createElement("div");
-    cap.className = "timeline-endcap " + side;
-    cap.style.animationDelay = side === "start" ? "0s" : (0.2 + timelineEvents.length * 0.05) + "s";
-    const img = document.createElement("img");
-    img.src = side === "start" ? timelineEndArt.start : timelineEndArt.end;
-    img.alt = "";
-    cap.appendChild(img);
-    if (side === "end") {
-        const caption = document.createElement("div");
-        caption.className = "timeline-endcap-caption";
-        caption.textContent = "The journey continues";
-        cap.appendChild(caption);
-    }
-    return cap;
-}
-
-if (track) {
-    const axis = document.createElement("div");
-    axis.className = "timeline-axis";
-    track.appendChild(axis);
-
-    axisProgressEl = document.createElement("div");
-    axisProgressEl.className = "timeline-axis-progress";
-    track.appendChild(axisProgressEl);
-
-    track.appendChild(makeEndCap("start"));
-
-    timelineEvents.forEach((ev, i) => {
-        const side = ev.side === "top" || ev.side === "bottom" ? ev.side : (i % 2 === 0 ? "top" : "bottom");
-
-        const item = document.createElement("div");
-        item.className = "timeline-item " + side;
-        // Stagger the entrance animation left to right as the page loads.
-        item.style.animationDelay = (0.15 + i * 0.05) + "s";
-
-        const tick = document.createElement("div");
-        tick.className = "timeline-tick";
-        tick.style.setProperty("--i", i);
-        item.appendChild(tick);
-
-        const node = document.createElement("div");
-        node.className = "timeline-node";
-        node.tabIndex = 0;
-        node.setAttribute("role", "button");
-        node.setAttribute("aria-label", ev.title + ", " + ev.date);
-
-        const diamond = document.createElement("div");
-        diamond.className = "timeline-diamond";
-        const face = document.createElement("div");
-        face.className = "timeline-diamond-face";
-        if (ev.image) {
-            const img = document.createElement("img");
-            img.src = ev.image;
-            img.alt = ev.title;
-            face.appendChild(img);
-        }
-        diamond.appendChild(face);
-        node.appendChild(diamond);
-
-        // HUD target-lock corners, purely decorative — see .node-lock-corner in style.css
-        ["tl", "tr", "bl", "br"].forEach((pos) => {
-            const corner = document.createElement("span");
-            corner.className = "node-lock-corner " + pos;
-            node.appendChild(corner);
-        });
-
-        const tooltip = document.createElement("div");
-        tooltip.className = "timeline-tooltip";
-        tooltip.innerHTML =
-            '<span class="tt-date">' + ev.date + '</span>' +
-            "<p>" + ev.blurb + "</p>" +
-            (ev.link ? '<a href="' + ev.link + '">View project <i class="fas fa-arrow-right" aria-hidden="true"></i></a>' : "");
-        node.appendChild(tooltip);
-
-        const label = document.createElement("div");
-        label.className = "timeline-label";
-
-        const hexSpan = document.createElement("span");
-        hexSpan.className = "hex-index";
-        hexSpan.textContent = "0x" + i.toString(16).padStart(2, "0").toUpperCase();
-        label.appendChild(hexSpan);
-
-        const dateSpan = document.createElement("span");
-        dateSpan.className = "date";
-        if (prefersReducedMotion) {
-            dateSpan.textContent = ev.date;
-        } else {
-            dateSpan.dataset.full = ev.date;
-            dateSpansToType.push(dateSpan);
-        }
-
-        const titleSpan = document.createElement("span");
-        titleSpan.className = "title";
-        titleSpan.textContent = ev.title;
-
-        label.appendChild(dateSpan);
-        label.appendChild(titleSpan);
-
-        const upper = document.createElement("div");
-        upper.className = "timeline-half upper";
-        const lower = document.createElement("div");
-        lower.className = "timeline-half lower";
-
-        if (side === "top") {
-            const stem = document.createElement("div");
-            stem.className = "timeline-stem";
-            upper.appendChild(label);
-            upper.appendChild(node);
-            upper.appendChild(stem);
-        } else {
-            const stem = document.createElement("div");
-            stem.className = "timeline-stem";
-            lower.appendChild(stem);
-            lower.appendChild(node);
-            lower.appendChild(label);
-        }
-
-        item.appendChild(upper);
-        item.appendChild(lower);
-        track.appendChild(item);
-    });
-
-    track.appendChild(makeEndCap("end"));
-
-    /* INFINITE BACKDROP: the star field, planet backdrop and the two orbit
-       rings all live inside .timeline-chart, a single backdrop layer that
-       JS parallax-shifts as you scroll (see updateScrollEffects below).
-       Left alone that layer is only ever as wide as one viewport, so a
-       long strip with lots of icons would scroll past the edge of it and
-       into empty space. This widens .timeline-chart to comfortably cover
-       the whole scrollable track -- with some headroom so it never runs
-       dry -- and clones the star/planet/orbit pieces across as many
-       viewport-wide segments as that needs, so the backdrop scales
-       automatically with however many events are on the page. */
-    function extendBackgroundLayers() {
-        if (!timelineChart || !timelineScroll) return;
-        const viewportWidth = timelineScroll.clientWidth || window.innerWidth || 1200;
-        const totalWidth = timelineScroll.scrollWidth || viewportWidth;
-        // 40% of headroom on top of the measured track width so the parallax
-        // layers (which move slower than the real scroll) never come up short.
-        const neededWidth = Math.max(viewportWidth, totalWidth) * 1.4;
-        const segments = Math.max(1, Math.ceil(neededWidth / viewportWidth));
-
-        timelineChart.style.position = "absolute";
-        timelineChart.style.left = "0";
-        timelineChart.style.top = "0";
-        timelineChart.style.height = "100%";
-        timelineChart.style.width = (segments * viewportWidth) + "px";
-
-        // Take every original layer (both compass rings, the starfield, the
-        // corner planet, the tick ring and both orbits) as templates, then
-        // rebuild the backdrop as a row of `segments` viewport-wide wrapper
-        // divs, each holding its own full copy of every layer. Because each
-        // wrapper is exactly one screen wide and itself position:absolute
-        // (so it's a containing block of its own), every layer's original
-        // CSS -- inset:0, a bottom-right corner offset, a 50%/50% centred
-        // ring -- resolves against that one segment rather than smearing or
-        // clipping across the whole multi-screen-wide backdrop. This runs on
-        // every layer, including the first screen, so segment 0 looks
-        // identical to every segment after it.
-        const templates = Array.from(timelineChart.children);
-        templates.forEach((el) => el.remove());
-
-        for (let i = 0; i < segments; i++) {
-            const segment = document.createElement("div");
-            segment.className = "chart-segment";
-            segment.style.position = "absolute";
-            segment.style.top = "0";
-            segment.style.left = (i * viewportWidth) + "px";
-            segment.style.width = viewportWidth + "px";
-            segment.style.height = "100%";
-            segment.style.pointerEvents = "none";
-
-            templates.forEach((tpl) => {
-                segment.appendChild(tpl.cloneNode(true));
-            });
-
-            timelineChart.appendChild(segment);
-        }
-    }
-    extendBackgroundLayers();
-
-    /* SCROLL-LINKED AXIS GLOW + DEPTH-TIERED PARALLAX + TICK COOLING: one
-       rAF-throttled handler keeps the progress fill in sync with scroll
-       position, drifts the chart backdrop and its two compass rings at three
-       distinct speeds for depth, and marks ticks the viewport's midpoint has
-       already passed so the line reads as a faint trail behind you. Parallax
-       is skipped under reduced motion; the progress fill and tick cooling
-       aren't, since both are direct readouts of scroll position rather than
-       motion running on their own.
-
-       Perf note: each tick's position along the strip is fixed once the
-       layout has settled, so it's measured once (measureTickOffsets) rather
-       than read from the DOM on every scroll event. That keeps the actual
-       scroll handler to plain arithmetic and style writes with no
-       getBoundingClientRect calls, so it never forces a synchronous layout
-       in the middle of a scroll. */
-    /* STATUS READOUT: a terminal-style line, bottom left, that swaps to a
-       new "decrypting" message each time the progress pip passes a node —
-       moved here from the loading screen so it's actually visible as you
-       browse, rather than flashing by (or not at all) during the ~1.2s
-       loader, and skipped entirely on repeat visits in the same session. */
-    const statusMessages = [
-        "DECRYPTING VAULT DATA", 
-        "SYNCING TELEMETRY",
-        "CALIBRATING RETICLE",
-        "ESTABLISHING UPLINK",
-        "COMPILING ARCHIVE INDEX",
-        "GUARDIANS MAKE THEIR OWN FATE",
-        "RENDERING TIMELINE",
-        "BOOTING VANGUARD OS",
-        "SCANNING SECTOR",
-        "AUTHENTICATING ACCESS"
-    ];
-    const timelineStatusEl = document.getElementById("timelineStatus");
-    function updateStatusReadout(progressFraction) {
-        if (!timelineStatusEl) return;
-        const msg = statusMessages[Math.floor(Math.random() * statusMessages.length)];
-        timelineStatusEl.textContent = msg + " //";
-    }
-
-    const allTicks = Array.from(track.querySelectorAll(".timeline-tick"));
-    let tickOffsets = [];
-    // Whether the glowing progress-bar pip has already swept past each tick,
-    // tracked separately from .is-passed (below), since that trail-dimming
-    // effect deliberately uses a different reference point (viewport
-    // midpoint) than the pip itself (exact scroll fraction).
-    let tickSurged = [];
-    function measureTickOffsets() {
-        if (!timelineScroll || !allTicks.length) return;
-        const scrollRect = timelineScroll.getBoundingClientRect();
-        tickOffsets = allTicks.map((t) => {
-            const r = t.getBoundingClientRect();
-            return (r.left + r.width / 2) - scrollRect.left + timelineScroll.scrollLeft;
-        });
-        tickSurged = allTicks.map(() => false);
-    }
-
-    const tileParallaxFactor = 0.12;
-    const ringNearFactor = 0.22; // small ring: reads as closer, drifts faster
-    const ringFarFactor = 0.16;  // large ring: a touch slower, still ahead of the tiles
-    let scrollTicking = false;
-    function updateScrollEffects() {
-        scrollTicking = false;
-        if (!timelineScroll) return;
-
-        // Reads first, all in one go, before any style is written below —
-        // avoids the read-after-write layout thrash that interleaving them
-        // would cause.
-        const scrollLeft = timelineScroll.scrollLeft;
-        const clientWidth = timelineScroll.clientWidth;
-        const scrollWidth = timelineScroll.scrollWidth;
-        const maxScroll = scrollWidth - clientWidth;
-
-        const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollLeft / maxScroll)) : 0;
-        if (axisProgressEl) axisProgressEl.style.setProperty("--scroll-progress", progress.toFixed(4));
-
-        if (timelineChart && !prefersReducedMotion) {
-            timelineChart.style.transform = "translateX(" + (-scrollLeft * tileParallaxFactor) + "px)";
-            timelineChart.style.setProperty("--parallax-ring-near", (-scrollLeft * (ringNearFactor - tileParallaxFactor)) + "px");
-            timelineChart.style.setProperty("--parallax-ring-far", (-scrollLeft * (ringFarFactor - tileParallaxFactor)) + "px");
-        }
-
-        if (tickOffsets.length) {
-            // Trail dimming: still keyed off the viewport's midpoint, so the
-            // line reads as "already scrolled past you" — unchanged.
-            const passLine = scrollLeft + clientWidth / 2;
-            allTicks.forEach((t, i) => {
-                t.classList.toggle("is-passed", tickOffsets[i] < passLine);
-            });
-
-            // Tick surge: keyed off the same "progress" fraction that drives
-            // the glowing pip's own width/position, so the flash fires right
-            // as that pip visually reaches each tick, not before. The status
-            // readout updates on the same crossing regardless of reduced
-            // motion (it's just a text swap); only the surge animation
-            // itself is skipped there.
-            const pipX = progress * scrollWidth;
-            allTicks.forEach((t, i) => {
-                const covered = tickOffsets[i] < pipX;
-                if (covered && !tickSurged[i]) {
-                    if (!prefersReducedMotion) {
-                        t.classList.remove("is-surging");
-                        void t.offsetWidth; // restart the animation if still mid-play
-                        t.classList.add("is-surging");
-                    }
-                    updateStatusReadout(progress);
-                }
-                tickSurged[i] = covered;
-            });
-        }
-    }
-    if (timelineScroll) {
-        measureTickOffsets();
-        timelineScroll.addEventListener("scroll", () => {
-            if (scrollTicking) return;
-            scrollTicking = true;
-            requestAnimationFrame(updateScrollEffects);
-        }, { passive: true });
-        window.addEventListener("resize", () => {
-            measureTickOffsets(); // layout may have reflowed, tick positions can shift
-            updateScrollEffects();
-        });
-        updateScrollEffects();
-    }
-
-    /* The diamond "charge up" glow no longer re-triggers on every scroll
-       into view — it's handled once, for every diamond, by the page-load
-       boot cascade further down, and never replays after that. */
-    if ("IntersectionObserver" in window) {
-        /* TYPEWRITER DATE REVEAL: types each date out once, the first time it
-           scrolls into view, then stops watching it. */
-        if (!prefersReducedMotion && dateSpansToType.length) {
-            const dateObserver = new IntersectionObserver((entries, obs) => {
-                entries.forEach((entry) => {
-                    if (!entry.isIntersecting) return;
-                    typeOutDate(entry.target);
-                    obs.unobserve(entry.target);
-                });
-            }, { root: timelineScroll, threshold: 0.6 });
-            dateSpansToType.forEach((el) => dateObserver.observe(el));
-        }
-    } else if (!prefersReducedMotion) {
-        // No IntersectionObserver support: just show the dates plainly.
-        dateSpansToType.forEach((el) => { el.textContent = el.dataset.full || ""; });
-    }
-
-    /* Clears "is-surging" once its animation finishes, so the class is free
-       to be re-added (with the remove/reflow/add above) next time this same
-       tick gets crossed again. */
-    if (track && !prefersReducedMotion) {
-        track.addEventListener("animationend", (e) => {
-            if (e.animationName === "timelineTickSurge") e.target.classList.remove("is-surging");
-        });
-    }
-
-    /* BOOT-UP SCAN: once the loading screen lets the page through, every
-       diamond (not just whichever one happens to be in view) fires its scan
-       sweep once in a left-to-right cascade — a one-time "systems online"
-       beat, distinct from the per-diamond charge-up above that replays each
-       time a diamond scrolls into view. Runs once per page load, skipped
-       under reduced motion. */
-    function playBootScan() {
-        if (prefersReducedMotion) return;
-        const diamonds = Array.from(track.querySelectorAll(".timeline-diamond"));
-        diamonds.forEach((d, i) => {
-            setTimeout(() => {
-                d.classList.remove("is-charging");
-                void d.offsetWidth; // forces the animation to restart cleanly
-                d.classList.add("is-charging");
-            }, i * 90);
-        });
-    }
-
-    const pageEl = document.querySelector(".page");
-    if (pageEl) {
-        if (!pageEl.classList.contains("hidden")) {
-            playBootScan();
-        } else {
-            // Loader is still up — wait for it to remove .hidden from .page,
-            // then run the cascade exactly once.
-            const pageRevealObserver = new MutationObserver(() => {
-                if (!pageEl.classList.contains("hidden")) {
-                    pageRevealObserver.disconnect();
-                    playBootScan();
-                }
-            });
-            pageRevealObserver.observe(pageEl, { attributes: true, attributeFilter: ["class"] });
-        }
-    }
-}
-
-/* WHEEL SCROLL: a plain vertical mouse-wheel gesture drives the horizontal
-   scroll instead, so people don't need to hold shift or hunt for the
-   scrollbar. Horizontal trackpad swipes are left alone since deltaX already
-   dominates on those and the browser handles them natively. */
-if (timelineScroll) {
-    timelineScroll.addEventListener("wheel", (e) => {
-        if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-        e.preventDefault();
-        timelineScroll.scrollLeft += e.deltaY;
-    }, { passive: false });
-}
-
-/* TAP-TO-OPEN TOOLTIP: CSS :hover doesn't exist on touch, and relying on a
-   plain div to pick up :focus on tap is inconsistent across mobile browsers.
-   A real click listener sidesteps both — it also fires reliably on the first
-   tap on iOS (adding a click handler is what avoids the classic "first tap
-   just hovers" ghost-click quirk). Tapping the "View project" link inside an
-   open tooltip still navigates normally; tapping anywhere else closes it. */
-if (track) {
-    track.addEventListener("click", (e) => {
-        const node = e.target.closest(".timeline-node");
-        if (!node || e.target.closest("a")) return;
-        const wasOpen = node.classList.contains("is-open");
-        track.querySelectorAll(".timeline-node.is-open").forEach(n => n.classList.remove("is-open"));
-        if (!wasOpen) node.classList.add("is-open");
-    });
-
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest(".timeline-node")) {
-            track.querySelectorAll(".timeline-node.is-open").forEach(n => n.classList.remove("is-open"));
-        }
-    });
-}
-</script>
-
 </body>
 </html>
