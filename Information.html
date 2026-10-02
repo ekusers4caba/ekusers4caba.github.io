@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--
+  INFORMATION PAGE
+  ================
+  Keep this file in the same folder as style.css, script.js and logo.png.
+  Search for "EDIT ME" to find the module and job-role lists. Anything in [square brackets] is placeholder text.
+  To add a module or role, copy one <li> line. To add a year or job, copy a whole <div class="project-item"> block.
+  Link to it from index.html with:  <a class="btn" href="information.html">Information</a>
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Information | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skills, education, achievements and experience of Christopher Abraham (Ekusers).">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="page project-page hidden">
+
+    <!-- ============ TITLE AREA ============ -->
+    <header>
+        <img src="logo.png" class="main-logo" alt="EK logo">
+
+        <h1>Profile</h1>
+        <p class="headline">Skills, education, achievements and work experience.</p>
+
+        <div class="tags project-tags">
+            <span>Education</span>
+            <span>Experience</span>
+            <span>Achievements</span>
+        </div>
+
+        <div class="cta-row">
+            <a class="btn btn-secondary" href="index.html"><i class="fas fa-arrow-left"></i> Back to main page</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ============ SIDEBAR: skills and achievements ============ -->
+        <aside class="sidebar">
+
+            <div class="box" id="skills">
+                <h3>Skills</h3>
+                <div class="skill-group">
+                    <p class="skill-label">Coding Languages</p>
+                    <div class="tags">
+                        <span>HTML</span><span>CSS</span><span>JavaScript</span><span>C++</span><span>C#</span><span>SQL</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Experience</p>
+                    <div class="tags">
+                        <span>Hardware repair</span><span>Software development</span><span>Video game development</span><span>Web development</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <p class="skill-label">Game Engines</p>
+                    <div class="tags">
+                        <span>Unity</span><span>Unreal Engine</span><span>BabylonJS</span><span>Scratch</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box" id="achievements">
+                <h3>Achievements</h3>
+                <p class="achievement-item"><strong>First place award at UWS GameJam 2026</strong><br>"Project Afterlife" created by myself and Heather Brander came first place at UWS GameJam 2026 which was over a period of 48 hours and was voted first place by peers and lecturers. <br><a href="https://www.youtube.com/watch?v=nr-VaeyIPYk" target="_blank" rel="noopener noreferrer">Watch the video about the GameJam</a></p>
+                <p class="achievement-item"><strong>UWS Retro Games Room Article</strong><br>In May of 2025, I was asked to write an article about the new retro games room at UWS which was later officially published by The Scottish Games Network and the University.<br><a href="https://scottishgames.net/2025/06/11/uws-retro-games-room-opens/" target="_blank" rel="noopener noreferrer">Read the article here</a></p>
+            </div>
+
+        </aside>
+
+        <!-- ============ MAIN COLUMN: education and experience dropdowns ============ -->
+        <main class="content">
+
+
+            <!-- EDUCATION -->
+            <div class="box" id="education">
+                <h2>Education</h2>
+
+                <!-- BSc: one dropdown per year -->
+                <div class="project-item">
+        <button class="project-toggle">BSc Video Games Development: Year 3<span class="status fixing">Current</span></button>
+        <div class="project-content">
+            <p>University of the West of Scotland (2026-present)</p>
+            <p class="meta-label">Modules</p>
+            <!-- EDIT ME: replace with your real modules -->
+            <ul class="project-highlights">
+                <li>Game Engine 2</li>
+                <li>Games Development Portfolio</li>
+                <li>JavaScript Games Programming Fundamentals</li>
+                <li>Creative Technologies Professionalism</li>
+            </ul>
+        </div>
+    </div>
+
+                <div class="project-item">
+        <button class="project-toggle">BSc Video Games Development: Year 2<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>University of the West of Scotland (2025-2026)</p>
+            <p class="meta-label">Modules</p>
+            <!-- EDIT ME -->
+            <ul class="project-highlights">
+                <li>3D Modelling</li>
+                <li>Applied Maths for Games and User Research</li>
+                <li>Computer Games Design</li>
+                <li>Level Design</li>
+                <li>Game Engine 1</li>
+                <li>Software Development for Games</li>
+            </ul>
+        </div>
+    </div>
+
+                <div class="project-item">
+        <button class="project-toggle">BSc Video Games Development: Year 1<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>University of the West of Scotland (2024-2025)</p>
+            <p class="meta-label">Modules</p>
+            <!-- EDIT ME -->
+            <ul class="project-highlights">
+                <li>Intro to Games Development</li>
+                <li>Introduction to Computer Animation</li>
+                <li>Progamming with Objects</li>
+                <li>The Creative Computing Professional</li>
+                <li>Computing Systems</li>
+                <li>Retro-Games Archaeology</li>
+            </ul>
+        </div>
+    </div>
+
+                <div class="project-item">
+        <button class="project-toggle">HND Software Development<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>New College Lanarkshire (2022-2023)</p>
+            <p class="meta-label">Modules</p>
+            <!-- EDIT ME -->
+            <ul class="project-highlights">
+                <li>Relational Databases Management Systems</li>
+                <li>Software Development: Object-Oriented Programming</li>
+                <li>Systems Development: Object-Oriented Analysis and Design</li>
+                <li>Web Development: Dynamically Generated Content</li>
+                <li>Client-Side Scripting for Web Applications</li>
+                <li>SQL: Introduction</li>
+                <li>Software Development: Programming Foundations</li>
+                <li>Systems Development: Testing Software</li>
+            </ul>
+        </div>
+    </div>
+
+                <div class="project-item">
+        <button class="project-toggle">HNC Computing Science<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>City of Glasgow College (2021-2022)</p>
+            <p class="meta-label">Modules</p>
+            <!-- EDIT ME -->
+            <ul class="project-highlights">
+                <li>Data Science</li>
+                <li>Big Data</li>
+                <li>Computer Systems Fundamentals</li>
+                <li>Computing: Graded Unit 1</li>
+                <li>Developing Mobile Web Applications: An Introduction</li>
+                <li>Developing Software: Introduction</li>
+                <li>Mathematics: Calculus and Matrices for Computing</li>
+                <li>Professionalism and Ethics in Computing</li>
+                <li>Software Development: Developing Small Scale Standalone Applications</li>
+                <li>Team Working in Computing</li>
+                <li>Troubleshooting Computing Problems</li>
+            </ul>
+        </div>
+    </div>
+            </div>
+
+            <!-- EXPERIENCE -->
+            <div class="box" id="experience">
+                <h2>Experience</h2>
+
+                <!-- One dropdown per employer. List each job role inside it. -->
+                <div class="project-item">
+        <button class="project-toggle">Re-Tek UK Ltd.<span class="status fixed">Completed</span></button>
+        <div class="project-content">
+            <p>2023-2024</p>
+            <p class="meta-label">Job roles</p>
+            <!-- EDIT ME: add a short note on what you did in each role -->
+            <ul class="project-highlights">
+                <li><strong>Laptop Technician</strong><br>Laptop Repair,Data Erasure and Disposal (Under UEEE and WEEE Guidelines)</li>
+                <li><strong>Warehouse Assistant</strong><br>Good's In, Inventory Management and Disposal of Green goods/Home appliances</li>
+            </ul>
+        </div>
+    </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <div class="cta-row back-row">
+        <a class="btn btn-secondary" href="index.html"><i class="fas fa-arrow-left"></i> Back to main page</a>
+    </div>
+
+    <footer>&copy; Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (kept so script.js finds everything it expects) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
