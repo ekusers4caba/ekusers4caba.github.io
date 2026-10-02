@@ -2677,3 +2677,101 @@ html.accessible-mode * {
     text-shadow: none !important;
     filter: none !important;
 }
+
+/* SIDEBAR BUTTON (Background / information.html) */
+.btn-sidebar {
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    margin-bottom: 20px;      /* matches the gap between your .box sections */
+    padding: 12px 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+/* icon on the left, arrow pushed to the far right */
+.btn-sidebar .fa-arrow-right {
+    margin-left: auto;
+    transition: transform 0.3s ease;
+}
+
+.btn-sidebar:hover .fa-arrow-right,
+.btn-sidebar:focus-visible .fa-arrow-right {
+    transform: translateX(5px);
+}
+
+.btn-sidebar:focus-visible {
+    outline: 2px solid var(--red-text);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .btn-sidebar .fa-arrow-right { transition: none; }
+    .btn-sidebar:hover .fa-arrow-right,
+    .btn-sidebar:focus-visible .fa-arrow-right { transform: none; }
+}
+
+/* CONNECT BOX inside the sidebar: compact 2-column grid */
+.sidebar .social-section {
+    text-align: left;
+}
+
+.sidebar .social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.sidebar .social-card {
+    box-sizing: border-box;
+    min-width: 0;                /* cancels the 150px minimum so two fit side by side */
+    width: auto;                 /* cancels the 80% width from the mobile rule */
+    padding: 10px 12px;
+    gap: 10px;
+    justify-content: flex-start; /* icon and label line up on the left */
+    font-size: 14px;
+}
+
+.sidebar .social-card i {
+    flex: 0 0 20px;              /* every icon gets the same width, so labels line up */
+    text-align: center;
+    font-size: 17px;
+}
+
+.sidebar .social-card span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* softer hover than the full-size cards: smaller glow and lift */
+.sidebar .social-card:hover,
+.sidebar .social-card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 0 12px rgba(155, 28, 28, 0.7);
+}
+
+.sidebar .social-card:focus-visible {
+    outline: 2px solid var(--red-text);
+    outline-offset: 2px;
+}
+
+/* very narrow phones: stack to one column */
+@media (max-width: 380px) {
+    .sidebar .social-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* readable mode: larger text, one column so labels never get cut off */
+html.accessible-mode .sidebar .social-card {
+    font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar .social-card:hover,
+    .sidebar .social-card:focus-visible { transform: none; }
+}
