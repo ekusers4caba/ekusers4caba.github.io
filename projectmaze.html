@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Project Maze | EK Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A procedurally generated, backrooms-inspired arena where a scary entity hunts the player and every second counts.">
+    <meta name="theme-color" content="#000000">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+        // Returning visitors in the same browser session skip the loading screen
+        try { if (sessionStorage.getItem("ekSeen")) document.documentElement.classList.add("skip-loader"); } catch (e) {}
+    </script>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<div class="page project-page hidden">
+
+    <!-- ============ TITLE AREA ============ -->
+    <header>
+        <img src="logo.png" class="main-logo" alt="EK logo">
+
+        <h1>Project Maze</h1>
+        <p class="headline">A procedurally generated, backrooms-inspired arena where something is hunting you. Time means everything if you survive.</p>
+
+        <div class="tags project-tags">
+            <span>Horror</span>
+            <span>Survival</span>
+            <span>Procedural generation</span>
+            <span>Unity 6</span>
+            <span>4 people</span>
+            <span>Completed</span>
+        </div>
+
+        <!-- BACK BUTTON: goes to the Projects section of the main page. -->
+        <div class="cta-row">
+            <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+        </div>
+    </header>
+
+    <div class="layout">
+
+        <!-- ============ SIDEBAR: quick facts, team, links ============ -->
+        <aside class="sidebar">
+
+            <div class="box" id="project-info">
+                <h3>Project info</h3>
+                <!-- EDIT ME -->
+                <dl class="project-meta">
+                    <dt>My role</dt>
+                    <dd>Programmer</dd>
+                    <dt>Tools</dt>
+                    <dd>Unity 6, C#</dd>
+                    <dt>Duration</dt>
+                    <dd>12 weeks</dd>
+                    <dt>Team size</dt>
+                    <dd>4 people</dd>
+                    <dt>Status</dt>
+                    <dd>Completed</dd>
+                </dl>
+            </div>
+
+            <div class="box" id="team">
+                <h3>Team</h3>
+                <!-- EDIT ME: one block per person. Solo project? Keep just yourself, or delete this whole box. -->
+                <div class="info-item">
+                    <strong>Christopher Abraham</strong>
+                    <small>Programmer</small>
+                    <p>Menus, enemy movement and in-game interactivity</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Heather Brander</strong>
+                    <small></small>
+                    <p>Procedural generation, audio and level design</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Logan Tuff</strong>
+                    <small>Design Lead</small>
+                    <p>UI design, texturing and modelling</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Kaleb Ronald</strong>
+                    <small>Programmer</small>
+                    <p>Player movement, controls and game mechanics</p>
+                </div>
+            </div>
+
+            <div class="box" id="links">
+                <h3>Links</h3>
+                <!-- EDIT ME: replace each # with a real address. "wip" keeps a button disabled with hazard tape until it's ready. -->
+                <div class="link-list">
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fas fa-play"></i> Play the demo</a>
+                    <a class="social-card wip" href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> View the source code</a>
+                </div>
+            </div>
+
+            <!-- KNOWN ISSUES -->
+            <div class="box" id="issues">
+                <h2>Known issues</h2>
+
+                <div class="info-item">
+                    <strong>[Bug or limitation] <span class="status open">Open</span></strong>
+                    <p>[What happens, when it happens, and any workaround. e.g. the entity can occasionally get stuck on generated corners.]</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>[Bug or limitation] <span class="status fixing">In progress</span></strong>
+                    <p>[What happens and what you're doing about it.]</p>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- ============ MAIN COLUMN ============ -->
+        <main class="content">
+
+            <div class="box" id="media">
+                <h2>Media</h2>
+
+                <div class="project-media">
+
+                    <div class="project-video">
+                        <video autoplay muted loop playsinline preload="metadata">
+                            <source src="MazeProjectVid.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="box" id="description">
+                <h2>About the project</h2>
+                <p>Project Maze is a survival horror game set inside a procedurally generated, backrooms-inspired arena. Endless, near-identical rooms and corridors stretch out in every direction, and the layout is different every run, so there is never a route to memorise.</p>
+                <p>Something else is in there with you. A frightening entity stalks the player through the maze and will chase them down. The goal is simple: stay alive. Time is the measure of everything, so every extra second you survive counts.</p>
+                <p>This project was created for a University course on game development. To showcase our skills and understanding of game design principles.</p>
+
+                <p class="meta-label">Key features</p>
+                <ul class="project-highlights">
+                    <li>Procedurally generated backrooms-style arena, new layout every run</li>
+                    <li>A relentless entity that chases the player through the maze</li>
+                    <li>Survival-time scoring: the longer you last, the better you did</li>
+                </ul>
+            </div>
+
+            <!-- LEARNING EXPERIENCES -->
+            <div class="box" id="learning">
+                <h2>What I learned</h2>
+                <!-- EDIT ME: these are starting points. Rewrite them with what actually happened. -->
+                <div class="info-item">
+                    <strong>Procedural generation</strong>
+                    <p>How procedural generation works and how to ensure variety while maintaining playability.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Enemy AI and pathfinding</strong>
+                    <p>How to implement AI behavior for an enemy that can effectively chase the player while maintaining a sense of threat and fairness.</p>
+                </div>
+
+                <div class="info-item">
+                    <strong>Building tension</strong>
+                    <p>How to create and maintain tension in a horror game through pacing, lighting, and sound design.</p>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- BACK BUTTON again, so nobody has to scroll up -->
+    <div class="cta-row back-row">
+        <a class="btn btn-secondary" href="index.html#projects"><i class="fas fa-arrow-left"></i> Back to main page</a>
+    </div>
+
+    <footer>&copy; Ekusers</footer>
+
+</div>
+
+<!-- LIGHTBOX (click a screenshot to enlarge) -->
+<div id="lightbox" aria-hidden="true">
+    <img src="" alt="">
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
